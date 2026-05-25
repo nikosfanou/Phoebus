@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+    <item id="1">
+        <value>123</value>
+        <flag>true</flag>
+    </item>
+
+    <item id="2">
+        <value>456</value>
+        <flag>false</flag>
+    </item>
+</data>

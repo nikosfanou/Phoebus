@@ -1,0 +1,788 @@
+{
+    "html": {
+        "Permissions-Policy-iframe-allow": {
+            "directives_delimiter" : ";",
+            "directive_values_delimiter" : " ",
+            "values_delimiter" : " ",
+            "directives" : {
+                "accelerometer" : ["", "'none'", "{ALLOWLIST}"],
+                "ambient-light-sensor": ["", "'none'", "{ALLOWLIST}"],
+                "aria-notify": ["", "'none'", "{ALLOWLIST}"],
+                "attribution-reporting": ["", "'none'", "{ALLOWLIST}"],
+                "autoplay": ["", "'none'", "{ALLOWLIST}"],
+                "bluetooth": ["", "'none'", "{ALLOWLIST}"],
+                "browsing-topics": ["", "'none'", "{ALLOWLIST}"],
+                "camera": ["", "'none'", "{ALLOWLIST}"],
+                "captured-surface-control": ["", "'none'", "{ALLOWLIST}"],
+                "compute-pressure": ["", "'none'", "{ALLOWLIST}"],
+                "cross-origin-isolated": ["", "'none'", "{ALLOWLIST}"],
+                "deferred-fetch": ["", "'none'", "{ALLOWLIST}"],
+                "deferred-fetch-minimal": ["", "'none'", "{ALLOWLIST}"],
+                "display-capture": ["", "'none'", "{ALLOWLIST}"],
+                "encrypted-media": ["", "'none'", "{ALLOWLIST}"],
+                "fullscreen": ["", "'none'", "{ALLOWLIST}"],
+                "gamepad": ["", "'none'", "{ALLOWLIST}"],
+                "geolocation": ["", "'none'", "{ALLOWLIST}"],
+                "gyroscope": ["", "'none'", "{ALLOWLIST}"],
+                "hid": ["", "'none'", "{ALLOWLIST}"],
+                "identity-credentials-get": ["", "'none'", "{ALLOWLIST}"],
+                "idle-detection": ["", "'none'", "{ALLOWLIST}"],
+                "language-detector": ["", "'none'", "{ALLOWLIST}"],
+                "local-fonts": ["", "'none'", "{ALLOWLIST}"],
+                "magnetometer": ["", "'none'", "{ALLOWLIST}"],
+                "microphone": ["", "'none'", "{ALLOWLIST}"],
+                "midi": ["", "'none'", "{ALLOWLIST}"],
+                "on-device-speech-recognition": ["", "'none'", "{ALLOWLIST}"],
+                "otp-credentials": ["", "'none'", "{ALLOWLIST}"],
+                "payment": ["", "'none'", "{ALLOWLIST}"],
+                "picture-in-picture": ["", "'none'", "{ALLOWLIST}"],
+                "private-state-token-issuance": ["", "'none'", "{ALLOWLIST}"],
+                "private-state-token-redemption": ["", "'none'", "{ALLOWLIST}"],
+                "publickey-credentials-create": ["", "'none'", "{ALLOWLIST}"],
+                "publickey-credentials-get": ["", "'none'", "{ALLOWLIST}"],
+                "screen-wake-lock": ["", "'none'", "{ALLOWLIST}"],
+                "serial": ["", "'none'", "{ALLOWLIST}"],
+                "speaker-selection": ["", "'none'", "{ALLOWLIST}"],
+                "storage-access": ["", "'none'", "{ALLOWLIST}"],
+                "translator": ["", "'none'", "{ALLOWLIST}"],
+                "summarizer": ["", "'none'", "{ALLOWLIST}"],
+                "usb": ["", "'none'", "{ALLOWLIST}"],
+                "web-share": ["", "'none'", "{ALLOWLIST}"],
+                "window-management": ["", "'none'", "{ALLOWLIST}"],
+                "xr-spatial-tracking": ["", "'none'", "{ALLOWLIST}"]
+            },
+            "placeholders" : {
+                "{ALLOWLIST}": ["'self'", "'src'", "{HOST_SOURCE}"],
+                "{SCHEME_SOURCE}" : ["http:", "https:"],
+                "{HOST_SOURCE}" : ["{SCHEME_SOURCE}//{ALL_HOSTS}", "{SCHEME_SOURCE}//{ALL_HOSTS}:{PORTS}"],
+                "{ALL_HOSTS}": ["{HOST}", "{SUBDOMAIN}.{HOST}"],
+                "{SUBDOMAIN}": ["sub", "*"],
+                "{HOST}": ["{URL}", "{IP}", "*"],
+                "{URL}" : ["{EXAMPLE}", "{CROSSEXAMPLE}"],
+                "{IP}": ["{EXAMPLE_IP}", "{CROSSEXAMPLE_IP}"],
+                "{PORTS}" : ["80", "443", "{PORT}", "{SSL_PORT}", "*"]
+            },
+            "multiple_directives" : true,
+            "multiple_values" : true
+        },
+        "Content-Security-Policy-meta" : {
+            "directives_delimiter" : ";",
+            "directive_values_delimiter" : " ",
+            "values_delimiter" : " ",
+            "directives" : {
+                "base-uri" : ["'none'", "{SOURCE_EXPRESSION_LIST}"],
+                "block-all-mixed-content": [],
+                "child-src" : ["'none'", "{SOURCE_EXPRESSION_LIST}", "{OPAQUE_SCHEME_SOURCE}"],
+                "connect-src" : ["'none'", "{SOURCE_EXPRESSION_LIST}", "{OPAQUE_SCHEME_SOURCE}"],
+                "default-src" : ["'none'", "'unsafe-eval'", "'trusted-types-eval'", "'inline-speculation-rules'", "'unsafe-inline'", "'wasm-unsafe-eval'", "'strict-dynamic'", "{SOURCE_EXPRESSION_LIST}", "'unsafe-hashes'", "'{SCRIPT_HASH}' ''{STYLE_HASH}''", "'nonce-abcxyz'", "{OPAQUE_SCHEME_SOURCE}", "'report-sample'"],
+                "fenced-frame-src" : ["https:", "*", "https://{ALL_HOSTS}", "https://{ALL_HOSTS}{PATH}", "https://{ALL_HOSTS}:{PORTS}", "https://{ALL_HOSTS}:{PORTS}{PATH}"],
+                "font-src" : ["'none'", "{SOURCE_EXPRESSION_LIST}", "{OPAQUE_SCHEME_SOURCE}"],
+                "form-action" : ["'none'", "{SOURCE_EXPRESSION_LIST}"],
+                "frame-src" : ["'none'", "{SOURCE_EXPRESSION_LIST}", "{OPAQUE_SCHEME_SOURCE}"],
+                "img-src" : ["'none'", "{SOURCE_EXPRESSION_LIST}", "{OPAQUE_SCHEME_SOURCE}"],
+                "manifest-src" : ["'none'", "{SOURCE_EXPRESSION_LIST}"],
+                "media-src" : ["'none'", "{SOURCE_EXPRESSION_LIST}", "{OPAQUE_SCHEME_SOURCE}", "mediastream:"],
+                "object-src" : ["'none'", "{SOURCE_EXPRESSION_LIST}", "{OPAQUE_SCHEME_SOURCE}"],
+                "prefetch-src" : ["'none'", "{SOURCE_EXPRESSION_LIST}"],
+                "require-trusted-types-for": ["'script'"],
+                "script-src" : ["'none'", "'unsafe-eval'", "'trusted-types-eval'", "'inline-speculation-rules'", "'unsafe-inline'", "'wasm-unsafe-eval'", "'strict-dynamic'", "{SOURCE_EXPRESSION_LIST}", "'unsafe-hashes'", "'{SCRIPT_HASH}'", "'nonce-abcxyz'", "{OPAQUE_SCHEME_SOURCE}", "'report-sample'"],
+                "script-src-attr" : ["'none'", "'unsafe-inline'", "'unsafe-hashes'", "'{SCRIPT_HASH}'", "'report-sample'"],
+                "script-src-elem" : ["'none'", "'unsafe-eval'", "'trusted-types-eval'", "'inline-speculation-rules'", "'unsafe-inline'", "'wasm-unsafe-eval'", "'strict-dynamic'", "{SOURCE_EXPRESSION_LIST}", "'{SCRIPT_HASH}'", "'nonce-abcxyz'", "{OPAQUE_SCHEME_SOURCE}", "'report-sample'"],
+                "style-src" : ["'none'", "'unsafe-inline'", "{SOURCE_EXPRESSION_LIST}", "'unsafe-hashes'", "'{STYLE_HASH}'", "'nonce-abcxyz'", "{OPAQUE_SCHEME_SOURCE}", "'report-sample'"],
+                "style-src-attr" : ["'none'", "'unsafe-inline'", "'unsafe-hashes'", "'{STYLE_HASH}'", "'report-sample'"],
+                "style-src-elem" : ["'none'", "'unsafe-inline'", "{SOURCE_EXPRESSION_LIST}", "'{STYLE_HASH}'", "'nonce-abcxyz'", "{OPAQUE_SCHEME_SOURCE}", "'report-sample'"],
+                "trusted-types": ["'none'", "'allow-duplicates'", "{POLICY_NAME}"],
+                "upgrade-insecure-requests": [],
+                "worker-src" : ["'none'", "{SOURCE_EXPRESSION_LIST}", "{OPAQUE_SCHEME_SOURCE}"]
+            },
+            "placeholders" : {
+                "{SOURCE_EXPRESSION_LIST}" : ["'self'", "{HOST_SOURCE}", "{SCHEME_SOURCE}"],
+                "{SCHEME_SOURCE}" : ["http:", "https:", "ws:", "wss:"],
+                "{HOST_SOURCE}" : ["{ALL_HOSTS}", "{ALL_HOSTS}{PATH}", "{ALL_HOSTS}:{PORTS}", "{SCHEME_SOURCE}//{ALL_HOSTS}", "{SCHEME_SOURCE}//{ALL_HOSTS}{PATH}", "{SCHEME_SOURCE}//{ALL_HOSTS}:{PORTS}", "{ALL_HOSTS}:{PORTS}{PATH}", "{SCHEME_SOURCE}//{ALL_HOSTS}:{PORTS}{PATH}"],
+                "{ALL_HOSTS}": ["{HOST}", "{SUBDOMAIN}.{HOST}"],
+                "{SUBDOMAIN}": ["sub", "*"],
+                "{HOST}": ["{URL}", "{IP}", "*"],
+                "{URL}" : ["{EXAMPLE}", "{CROSSEXAMPLE}"],
+                "{IP}": ["{EXAMPLE_IP}", "{CROSSEXAMPLE_IP}"],
+                "{PORTS}" : ["80", "443", "{PORT}", "{SSL_PORT}", "*"],
+                "{PATH}": ["/"],
+                "{OPAQUE_SCHEME_SOURCE}": ["blob:", "data:"],
+                "{OTHER_SCHEME_SOURCE}": ["filesystem:", "file:", "ftp:", "javascript:", "mailto:", "resource:", "ssh:", "tel:", "urn:", "view-source:"]
+            },
+            "multiple_directives" : true,
+            "multiple_values" : true
+        },
+        "Referrer-Policy-meta": {
+            "directives": [
+                "no-referrer",
+                "no-referrer-when-downgrade",
+                "origin",
+                "origin-when-cross-origin",
+                "same-origin",
+                "strict-origin",
+                "strict-origin-when-cross-origin",
+                "unsafe-url"
+            ],
+            "multiple_directives" : false,
+            "multiple_values" : false
+        },
+        "robots-meta": {
+            "directives_delimiter": ",",
+            "directives" : [
+                "all",
+                "noindex",
+                "nofollow",
+                "none",
+                "nosnippet",
+                "noimageindex",
+                "index",
+                "follow",
+                "noarchive",
+                "nocache"
+            ],
+            "multiple_directives" : true,
+            "multiple_values" : false
+        },
+        "Content-Security-Policy-iframe-csp" : {
+            "directives_delimiter" : ";",
+            "directive_values_delimiter" : " ",
+            "values_delimiter" : " ",
+            "directives" : {
+                "base-uri" : ["'none'", "{SOURCE_EXPRESSION_LIST}"],
+                "block-all-mixed-content": [],
+                "child-src" : ["'none'", "{SOURCE_EXPRESSION_LIST}", "{OPAQUE_SCHEME_SOURCE}"],
+                "connect-src" : ["'none'", "{SOURCE_EXPRESSION_LIST}", "{OPAQUE_SCHEME_SOURCE}"],
+                "default-src" : ["'none'", "'unsafe-eval'", "'trusted-types-eval'", "'inline-speculation-rules'", "'unsafe-inline'", "'wasm-unsafe-eval'", "'strict-dynamic'", "{SOURCE_EXPRESSION_LIST}", "'unsafe-hashes'", "'{SCRIPT_HASH}' '{STYLE_HASH}'", "'nonce-abcxyz'", "{OPAQUE_SCHEME_SOURCE}", "'report-sample'"],
+                "fenced-frame-src" : ["https:", "*", "https://{ALL_HOSTS}", "https://{ALL_HOSTS}{PATH}", "https://{ALL_HOSTS}:{PORTS}", "https://{ALL_HOSTS}:{PORTS}{PATH}"],
+                "font-src" : ["'none'", "{SOURCE_EXPRESSION_LIST}", "{OPAQUE_SCHEME_SOURCE}"],
+                "form-action" : ["'none'", "{SOURCE_EXPRESSION_LIST}"],
+                "frame-ancestors" : ["'none'", "{SOURCE_EXPRESSION_LIST}"],
+                "frame-src" : ["'none'", "{SOURCE_EXPRESSION_LIST}", "{OPAQUE_SCHEME_SOURCE}"],
+                "img-src" : ["'none'", "{SOURCE_EXPRESSION_LIST}", "{OPAQUE_SCHEME_SOURCE}"],
+                "manifest-src" : ["'none'", "{SOURCE_EXPRESSION_LIST}"],
+                "media-src" : ["'none'", "{SOURCE_EXPRESSION_LIST}", "{OPAQUE_SCHEME_SOURCE}", "mediastream:"],
+                "object-src" : ["'none'", "{SOURCE_EXPRESSION_LIST}", "{OPAQUE_SCHEME_SOURCE}"],
+                "prefetch-src" : ["'none'", "{SOURCE_EXPRESSION_LIST}"],
+                "report-to": ["csp-violation"], // Need to set Reporting-Endpoints or Report-To HTTP response headers
+                "report-uri": ["/csp-report"],
+                "require-trusted-types-for": ["'script'"],
+                "sandbox": ["", "{SANDBOX_VALUES}"],
+                "script-src" : ["'none'", "'unsafe-eval'", "'trusted-types-eval'", "'inline-speculation-rules'", "'unsafe-inline'", "'wasm-unsafe-eval'", "'strict-dynamic'", "{SOURCE_EXPRESSION_LIST}", "'unsafe-hashes'", "'{SCRIPT_HASH}'", "'nonce-abcxyz'", "{OPAQUE_SCHEME_SOURCE}", "'report-sample'"],
+                "script-src-attr" : ["'none'", "'unsafe-inline'", "'unsafe-hashes'", "'{SCRIPT_HASH}'", "'report-sample'"],
+                "script-src-elem" : ["'none'", "'unsafe-eval'", "'trusted-types-eval'", "'inline-speculation-rules'", "'unsafe-inline'", "'wasm-unsafe-eval'", "'strict-dynamic'", "{SOURCE_EXPRESSION_LIST}", "'{SCRIPT_HASH}'", "'nonce-abcxyz'", "{OPAQUE_SCHEME_SOURCE}", "'report-sample'"],
+                "style-src" : ["'none'", "'unsafe-inline'", "{SOURCE_EXPRESSION_LIST}", "'unsafe-hashes'", "'{STYLE_HASH}'", "'nonce-abcxyz'", "{OPAQUE_SCHEME_SOURCE}", "'report-sample'"],
+                "style-src-attr" : ["'none'", "'unsafe-inline'", "'unsafe-hashes'", "'{STYLE_HASH}'", "'report-sample'"],
+                "style-src-elem" : ["'none'", "'unsafe-inline'", "{SOURCE_EXPRESSION_LIST}", "'{STYLE_HASH}'", "'nonce-abcxyz'", "{OPAQUE_SCHEME_SOURCE}", "'report-sample'"],
+                "trusted-types": ["'none'", "'allow-duplicates'", "{POLICY_NAME}"],
+                "upgrade-insecure-requests": [],
+                "worker-src" : ["'none'", "{SOURCE_EXPRESSION_LIST}", "{OPAQUE_SCHEME_SOURCE}"]
+            },
+            "placeholders" : {
+                "{SOURCE_EXPRESSION_LIST}" : ["'self'", "{HOST_SOURCE}", "{SCHEME_SOURCE}"],
+                "{SCHEME_SOURCE}" : ["http:", "https:", "ws:", "wss:"],
+                "{HOST_SOURCE}" : ["{ALL_HOSTS}", "{ALL_HOSTS}{PATH}", "{ALL_HOSTS}:{PORTS}", "{SCHEME_SOURCE}//{ALL_HOSTS}", "{SCHEME_SOURCE}//{ALL_HOSTS}{PATH}", "{SCHEME_SOURCE}//{ALL_HOSTS}:{PORTS}", "{ALL_HOSTS}:{PORTS}{PATH}", "{SCHEME_SOURCE}//{ALL_HOSTS}:{PORTS}{PATH}"],
+                "{ALL_HOSTS}": ["{HOST}", "{SUBDOMAIN}.{HOST}"],
+                "{SUBDOMAIN}": ["sub", "*"],
+                "{HOST}": ["{URL}", "{IP}", "*"],
+                "{URL}" : ["{EXAMPLE}", "{CROSSEXAMPLE}"],
+                "{IP}": ["{EXAMPLE_IP}", "{CROSSEXAMPLE_IP}"],
+                "{PORTS}" : ["80", "443", "{PORT}", "{SSL_PORT}", "*"],
+                "{PATH}": ["/"],
+                "{OPAQUE_SCHEME_SOURCE}": ["blob:", "data:"],
+                "{OTHER_SCHEME_SOURCE}": ["filesystem:", "file:", "ftp:", "javascript:", "mailto:", "resource:", "ssh:", "tel:", "urn:", "view-source:"],
+                "{SANDBOX_VALUES}": ["allow-downloads", "allow-forms", "allow-modals", "allow-orientation-lock", "allow-pointer-lock", "allow-popups", "allow-popups-to-escape-sandbox", "allow-presentation", "allow-same-origin", "allow-scripts", "allow-storage-access-by-user-activation", "allow-top-navigation", "allow-top-navigation-by-user-activation", "allow-top-navigation-to-custom-protocols"],
+                "{POLICY_NAME}": ["myPolicy"]
+            },
+            "multiple_directives" : true,
+            "multiple_values" : true
+        },
+        "Subresource-Integrity": {
+            "directives" : [
+                "{SCRIPT_HASH}",
+                "{STYLE_HASH}"
+            ],
+            "multiple_directives" : false,
+            "multiple_values" : false
+        },
+        "sandbox": {
+            "directives_delimiter" : " ",
+            "directives" : [
+                "allow-downloads" ,
+                "allow-forms" ,
+                "allow-modals" ,
+                "allow-orientation-lock" ,
+                "allow-pointer-lock" ,
+                "allow-popups" ,
+                "allow-popups-to-escape-sandbox" ,
+                "allow-presentation" ,
+                "allow-same-origin",
+                "allow-scripts" ,
+                "allow-storage-access-by-user-activation" ,
+                "allow-top-navigation",
+                "allow-top-navigation-by-user-activation" ,
+                "allow-top-navigation-to-custom-protocols"
+            ],
+            "multiple_directives" : true,
+            "multiple_values" : false
+        },
+        "referrerpolicy" : {
+            "directives": [
+                "no-referrer",
+                "no-referrer-when-downgrade",
+                "origin",
+                "origin-when-cross-origin",
+                "same-origin",
+                "strict-origin",
+                "strict-origin-when-cross-origin",
+                "unsafe-url"
+            ],
+            "multiple_directives" : false,
+            "multiple_values" : false
+        },
+        "crossorigin": {
+            "directives" : [
+                "" ,
+                "anonymous" ,
+                "use-credentials"
+            ],
+            "multiple_directives" : false,
+            "multiple_values" : false
+        }
+    },
+    "headers": {
+        "Access-Control-Allow-Credentials": {
+            "directives" : ["true"],
+            "multiple_directives" : false,
+            "multiple_values" : false
+        },
+        "Access-Control-Allow-Headers": { // Set all request headers here
+            "directives_delimiter" : ",",
+            "directives" : ["*", "{HEADER_NAME}"],
+            "placeholders" : {
+                "{HEADER_NAME}" : ["{CLIENT_HINTS}", "Content-Type", "Content-Length", "Content-Encoding", "Authorization", "Cookie", "Proxy-Authorization", "From", "Host", "User-Agent", "Accept", "Accept-Language", "Accept-Encoding", "Referer", "Expect", "Max-Forwards", "Connection", "Keep-Alive", "Upgrade-Insecure-Requests", "If-Match", "If-Modified-Since", "If-Unmodified-Since", "If-None-Match", "Cache-Control", "Access-Control-Request-Headers", "Access-Control-Request-Method", "Origin", "Content-Disposition", "Content-Digest", "Prefer", "Forwarded", "Via", "Range", "If-Range", "Sec-Fetch-Site", "Sec-Fetch-Mode", "Sec-Fetch-User", "Sec-Fetch-Dest", "Sec-Purpose", "Service-Worker-Navigation-Preload", "Sec-Fetch-Storage-Access", "Sec-WebSocket-Extensions", "Sec-WebSocket-Protocol", "Sec-WebSocket-Key", "Transfer-Encoding", "TE", "Trailer", "Alt-Used", "Link", "Date", "Service-Worker", "Upgrade", "Priority", "Attribution-Reporting-Eligible", "DNT", "Sec-GPC", "Sec-Browsing-Topics", "Early-Data", "Idempotency-Key", "Sec-Speculation-Tags", "Pragma", "Warning"],
+                "{CLIENT_HINTS}": ["Sec-CH-UA", "Sec-CH-UA-Arch", "Sec-CH-UA-Bitness", "Sec-CH-UA-Form-Factors", "Sec-CH-UA-Full-Version", "Sec-CH-UA-Full-Version-List", "Sec-CH-UA-Mobile", "Sec-CH-UA-Model", "Sec-CH-UA-Platform", "Sec-CH-UA-Platform-Version", "Sec-CH-UA-WoW64", "Sec-CH-Prefers-Color-Scheme", "Sec-CH-Prefers-Reduced-Motion", "Sec-CH-Prefers-Reduced-Transparency", "Sec-CH-Device-Memory", "Sec-CH-DPR", "Sec-CH-Viewport-Height", "Sec-CH-Viewport-Width", "Sec-CH-Width", "Device-Memory", "DPR", "Viewport-Width", "Width", "Downlink", "ECT", "RTT", "Save-Data"]
+            },
+            "multiple_directives" : true,
+            "multiple_values" : false
+        },
+        "Access-Control-Allow-Methods": {
+            "directives_delimiter" : ",",
+            "directives" : ["*", "{METHODS}"],
+            "placeholders": {
+                "{METHODS}": ["PUT", "DELETE", "CONNECT", "OPTIONS", "GET", "HEAD", "POST"]
+            },
+            "multiple_directives" : true,
+            "multiple_values" : false
+        },
+        "Access-Control-Allow-Origin": {
+            "directives" : ["*", "null", "{ORIGIN}"],
+            "placeholders": {
+                "{ORIGIN}": ["{EXAMPLE}", "{CROSSEXAMPLE}", "{SUB_EXAMPLE}"]
+            },
+            "multiple_directives" : false,
+            "multiple_values" : false
+        },
+        "Access-Control-Expose-Headers": { // Set all response headers here
+            "directives_delimiter" : ",",
+            "directives" : ["*", "{HEADER_NAME}"],
+            "placeholders" : {
+                "{HEADER_NAME}" : ["WWW-Authenticate", "Proxy-Authenticate", "Set-Cookie", "Age", "Cache-Control", "Clear-Site-Data", "Expires", "No-Vary-Search", "Last-Modified", "ETag", "Vary", "Connection", "Keep-Alive", "Accept", "Accept-Encoding", "Accept-Patch", "Accept-Post", "Access-Control-Allow-Credentials", "Access-Control-Allow-Headers", "Access-Control-Allow-Methods", "Access-Control-Allow-Origin", "Access-Control-Expose-Headers", "Access-Control-Max-Age", "Timing-Allow-Origin", "Content-Disposition", "Integrity-Policy", "Integrity-Policy-Report-Only", "Content-Length", "Preference-Applied", "Via", "Accept-Ranges", "Content-Range", "Location", "Refresh", "Referrer-Policy", "Allow", "Server", "Cross-Origin-Embedder-Policy", "Cross-Origin-Opener-Policy", "Cross-Origin-Resource-Policy", "Content-Security-Policy", "Content-Security-Policy-Report-Only", "Permissions-Policy", "Expect-CT", "Reporting-Endpoints", "Report-To", "Strict-Transport-Security", "X-Content-Type-Options", "X-Frame-Options", "X-Permitted-Cross-Domain-Policies", "X-Powered-By", "X-XSS-Protection", "Activate-Storage-Access", "Transfer-Encoding", "Trailer", "Sec-WebSocket-Accept", "Sec-WebSocket-Extensions", "Sec-WebSocket-Protocol", "Sec-WebSocket-Version", "Alt-Svc", "Date", "Link", "Retry-After", "Server-Timing", "Service-Worker-Allowed", "SourceMap", "Upgrade", "Priority", "Attribution-Reporting-Register-Source", "Attribution-Reporting-Register-Trigger", "Accept-CH", "Critical-CH", "Tk", "Origin-Agent-Cluster", "NEL", "Observe-Browsing-Topics", "Set-Login", "Speculation-Rules", "Supports-Loading-Mode", "X-DNS-Prefetch-Control", "X-Robots-Tag", "Pragma", "Warning"]
+            },
+            "multiple_directives" : true,
+            "multiple_values" : false
+        },
+        "Access-Control-Max-Age": {
+            "directives" : ["{EXPIRES}"],
+            "placeholders": {
+                "{EXPIRES}": ["0", "600"]
+            },
+            "multiple_directives" : false,
+            "multiple_values" : false
+        },
+        "Activate-Storage-Access": {
+            "directives" : {
+                "retry" : ["", ";allowed-origin={ORIGIN}"],
+                "load" : []
+            },
+            "placeholders" : {
+                "{ORIGIN}" : ["*", "\"{EXAMPLE}\"", "\"{CROSSEXAMPLE}\""]
+            },
+            "multiple_directives" : false,
+            "multiple_values" : false
+        },
+        "Clear-Site-Data": {
+            "directives_delimiter" : ",",
+            "directives" : [
+                "\"cache\"",
+                "\"clientHints\"",
+                "\"cookies\"",
+                "\"executionContexts\"",
+                "\"prefetchCache\"",
+                "\"prerenderCache\"",
+                "\"storage\"",
+                "\"*\""
+            ],
+            "multiple_directives" : true,
+            "multiple_values" : false
+        },
+        "Content-Security-Policy" : {
+            "directives_delimiter" : ";",
+            "directive_values_delimiter" : " ",
+            "values_delimiter" : " ",
+            "directives" : {
+                "base-uri" : ["'none'", "{SOURCE_EXPRESSION_LIST}"],
+                "block-all-mixed-content": [],
+                "child-src" : ["'none'", "{SOURCE_EXPRESSION_LIST}", "{OPAQUE_SCHEME_SOURCE}"],
+                "connect-src" : ["'none'", "{SOURCE_EXPRESSION_LIST}", "{OPAQUE_SCHEME_SOURCE}"],
+                "default-src" : ["'none'", "'unsafe-eval'", "'trusted-types-eval'", "'inline-speculation-rules'", "'unsafe-inline'", "'wasm-unsafe-eval'", "'strict-dynamic'", "{SOURCE_EXPRESSION_LIST}", "'unsafe-hashes'", "'{SCRIPT_HASH}' '{STYLE_HASH}'", "'nonce-abcxyz'", "{OPAQUE_SCHEME_SOURCE}", "'report-sample'"],
+                "fenced-frame-src" : ["https:", "*", "https://{ALL_HOSTS}", "https://{ALL_HOSTS}{PATH}", "https://{ALL_HOSTS}:{PORTS}", "https://{ALL_HOSTS}:{PORTS}{PATH}"],
+                "font-src" : ["'none'", "{SOURCE_EXPRESSION_LIST}", "{OPAQUE_SCHEME_SOURCE}"],
+                "form-action" : ["'none'", "{SOURCE_EXPRESSION_LIST}"],
+                "frame-ancestors" : ["'none'", "{SOURCE_EXPRESSION_LIST}"],
+                "frame-src" : ["'none'", "{SOURCE_EXPRESSION_LIST}", "{OPAQUE_SCHEME_SOURCE}"],
+                "img-src" : ["'none'", "{SOURCE_EXPRESSION_LIST}", "{OPAQUE_SCHEME_SOURCE}"],
+                "manifest-src" : ["'none'", "{SOURCE_EXPRESSION_LIST}"],
+                "media-src" : ["'none'", "{SOURCE_EXPRESSION_LIST}", "{OPAQUE_SCHEME_SOURCE}", "mediastream:"],
+                "object-src" : ["'none'", "{SOURCE_EXPRESSION_LIST}", "{OPAQUE_SCHEME_SOURCE}"],
+                "prefetch-src" : ["'none'", "{SOURCE_EXPRESSION_LIST}"],
+                "report-to": ["csp-violation"], // Need to set Reporting-Endpoints or Report-To HTTP response headers
+                "report-uri": ["/csp-report"],
+                "require-trusted-types-for": ["'script'"],
+                "sandbox": ["", "{SANDBOX_VALUES}"],
+                "script-src" : ["'none'", "'unsafe-eval'", "'trusted-types-eval'", "'inline-speculation-rules'", "'unsafe-inline'", "'wasm-unsafe-eval'", "'strict-dynamic'", "{SOURCE_EXPRESSION_LIST}", "'unsafe-hashes'", "'{SCRIPT_HASH}'", "'nonce-abcxyz'", "{OPAQUE_SCHEME_SOURCE}", "'report-sample'"],
+                "script-src-attr" : ["'none'", "'unsafe-inline'", "'unsafe-hashes'", "'{SCRIPT_HASH}'", "'report-sample'"],
+                "script-src-elem" : ["'none'", "'unsafe-eval'", "'trusted-types-eval'", "'inline-speculation-rules'", "'unsafe-inline'", "'wasm-unsafe-eval'", "'strict-dynamic'", "{SOURCE_EXPRESSION_LIST}", "'{SCRIPT_HASH}'", "'nonce-abcxyz'", "{OPAQUE_SCHEME_SOURCE}", "'report-sample'"],
+                "style-src" : ["'none'", "'unsafe-inline'", "{SOURCE_EXPRESSION_LIST}", "'unsafe-hashes'", "'{STYLE_HASH}'", "'nonce-abcxyz'", "{OPAQUE_SCHEME_SOURCE}", "'report-sample'"],
+                "style-src-attr" : ["'none'", "'unsafe-inline'", "'unsafe-hashes'", "'{STYLE_HASH}'", "'report-sample'"],
+                "style-src-elem" : ["'none'", "'unsafe-inline'", "{SOURCE_EXPRESSION_LIST}", "'{STYLE_HASH}'", "'nonce-abcxyz'", "{OPAQUE_SCHEME_SOURCE}", "'report-sample'"],
+                "trusted-types": ["'none'", "'allow-duplicates'", "{POLICY_NAME}"],
+                "upgrade-insecure-requests": [],
+                "worker-src" : ["'none'", "{SOURCE_EXPRESSION_LIST}", "{OPAQUE_SCHEME_SOURCE}"]
+            },
+            "placeholders" : {
+                "{SOURCE_EXPRESSION_LIST}" : ["'self'", "{HOST_SOURCE}", "{SCHEME_SOURCE}"],
+                "{SCHEME_SOURCE}" : ["http:", "https:", "ws:", "wss:"],
+                "{HOST_SOURCE}" : ["{ALL_HOSTS}", "{ALL_HOSTS}{PATH}", "{ALL_HOSTS}:{PORTS}", "{SCHEME_SOURCE}//{ALL_HOSTS}", "{SCHEME_SOURCE}//{ALL_HOSTS}{PATH}", "{SCHEME_SOURCE}//{ALL_HOSTS}:{PORTS}", "{ALL_HOSTS}:{PORTS}{PATH}", "{SCHEME_SOURCE}//{ALL_HOSTS}:{PORTS}{PATH}"],
+                "{ALL_HOSTS}": ["{HOST}", "{SUBDOMAIN}.{HOST}"],
+                "{SUBDOMAIN}": ["sub", "*"],
+                "{HOST}": ["{URL}", "{IP}", "*"],
+                "{URL}" : ["{EXAMPLE}", "{CROSSEXAMPLE}"],
+                "{IP}": ["{EXAMPLE_IP}", "{CROSSEXAMPLE_IP}"],
+                "{PORTS}" : ["80", "443", "{PORT}", "{SSL_PORT}", "*"],
+                "{PATH}": ["/"],
+                "{OPAQUE_SCHEME_SOURCE}": ["blob:", "data:"],
+                "{OTHER_SCHEME_SOURCE}": ["filesystem:", "file:", "ftp:", "javascript:", "mailto:", "resource:", "ssh:", "tel:", "urn:", "view-source:"],
+                "{SANDBOX_VALUES}": ["allow-downloads", "allow-forms", "allow-modals", "allow-orientation-lock", "allow-pointer-lock", "allow-popups", "allow-popups-to-escape-sandbox", "allow-presentation", "allow-same-origin", "allow-scripts", "allow-storage-access-by-user-activation", "allow-top-navigation", "allow-top-navigation-by-user-activation", "allow-top-navigation-to-custom-protocols"],
+                "{POLICY_NAME}": ["myPolicy"]
+            },
+            "multiple_directives" : true,
+            "multiple_values" : true
+        },
+        "Content-Security-Policy-Report-Only" : {
+            "directives_delimiter" : ";",
+            "directive_values_delimiter" : " ",
+            "values_delimiter" : " ",
+            "directives" : {
+                "base-uri" : ["'none'", "{SOURCE_EXPRESSION_LIST}"],
+                "block-all-mixed-content": [],
+                "child-src" : ["'none'", "{SOURCE_EXPRESSION_LIST}", "{OPAQUE_SCHEME_SOURCE}"],
+                "connect-src" : ["'none'", "{SOURCE_EXPRESSION_LIST}", "{OPAQUE_SCHEME_SOURCE}"],
+                "default-src" : ["'none'", "'unsafe-eval'", "'trusted-types-eval'", "'inline-speculation-rules'", "'unsafe-inline'", "'wasm-unsafe-eval'", "'strict-dynamic'", "{SOURCE_EXPRESSION_LIST}", "'unsafe-hashes'", "'{SCRIPT_HASH}' '{STYLE_HASH}'", "'nonce-abcxyz'", "{OPAQUE_SCHEME_SOURCE}", "'report-sample'"],
+                "fenced-frame-src" : ["https:", "*", "https://{ALL_HOSTS}", "https://{ALL_HOSTS}{PATH}", "https://{ALL_HOSTS}:{PORTS}", "https://{ALL_HOSTS}:{PORTS}{PATH}"],
+                "font-src" : ["'none'", "{SOURCE_EXPRESSION_LIST}", "{OPAQUE_SCHEME_SOURCE}"],
+                "form-action" : ["'none'", "{SOURCE_EXPRESSION_LIST}"],
+                "frame-ancestors" : ["'none'", "{SOURCE_EXPRESSION_LIST}"],
+                "frame-src" : ["'none'", "{SOURCE_EXPRESSION_LIST}", "{OPAQUE_SCHEME_SOURCE}"],
+                "img-src" : ["'none'", "{SOURCE_EXPRESSION_LIST}", "{OPAQUE_SCHEME_SOURCE}"],
+                "manifest-src" : ["'none'", "{SOURCE_EXPRESSION_LIST}"],
+                "media-src" : ["'none'", "{SOURCE_EXPRESSION_LIST}", "{OPAQUE_SCHEME_SOURCE}", "mediastream:"],
+                "object-src" : ["'none'", "{SOURCE_EXPRESSION_LIST}", "{OPAQUE_SCHEME_SOURCE}"],
+                "prefetch-src" : ["'none'", "{SOURCE_EXPRESSION_LIST}"],
+                "report-to": ["csp-violation"], // Need to set Reporting-Endpoints or Report-To HTTP response headers
+                "report-uri": ["/csp-report"],
+                "require-trusted-types-for": ["'script'"],
+                "script-src" : ["'none'", "'unsafe-eval'", "'trusted-types-eval'", "'inline-speculation-rules'", "'unsafe-inline'", "'wasm-unsafe-eval'", "'strict-dynamic'", "{SOURCE_EXPRESSION_LIST}", "'unsafe-hashes'", "'{SCRIPT_HASH}'", "'nonce-abcxyz'", "{OPAQUE_SCHEME_SOURCE}", "'report-sample'"],
+                "script-src-attr" : ["'none'", "'unsafe-inline'", "'unsafe-hashes'", "'{SCRIPT_HASH}'", "'report-sample'"],
+                "script-src-elem" : ["'none'", "'unsafe-eval'", "'trusted-types-eval'", "'inline-speculation-rules'", "'unsafe-inline'", "'wasm-unsafe-eval'", "'strict-dynamic'", "{SOURCE_EXPRESSION_LIST}", "'{SCRIPT_HASH}'", "'nonce-abcxyz'", "{OPAQUE_SCHEME_SOURCE}", "'report-sample'"],
+                "style-src" : ["'none'", "'unsafe-inline'", "{SOURCE_EXPRESSION_LIST}", "'unsafe-hashes'", "'{STYLE_HASH}'", "'nonce-abcxyz'", "{OPAQUE_SCHEME_SOURCE}", "'report-sample'"],
+                "style-src-attr" : ["'none'", "'unsafe-inline'", "'unsafe-hashes'", "'{STYLE_HASH}'", "'report-sample'"],
+                "style-src-elem" : ["'none'", "'unsafe-inline'", "{SOURCE_EXPRESSION_LIST}", "'{STYLE_HASH}'", "'nonce-abcxyz'", "{OPAQUE_SCHEME_SOURCE}", "'report-sample'"],
+                "trusted-types": ["'none'", "'allow-duplicates'", "{POLICY_NAME}"],
+                "upgrade-insecure-requests": [],
+                "worker-src" : ["'none'", "{SOURCE_EXPRESSION_LIST}", "{OPAQUE_SCHEME_SOURCE}"]
+            },
+            "placeholders" : {
+                "{SOURCE_EXPRESSION_LIST}" : ["'self'", "{HOST_SOURCE}", "{SCHEME_SOURCE}"],
+                "{SCHEME_SOURCE}" : ["http:", "https:", "ws:", "wss:"],
+                "{HOST_SOURCE}" : ["{ALL_HOSTS}", "{ALL_HOSTS}{PATH}", "{ALL_HOSTS}:{PORTS}", "{SCHEME_SOURCE}//{ALL_HOSTS}", "{SCHEME_SOURCE}//{ALL_HOSTS}{PATH}", "{SCHEME_SOURCE}//{ALL_HOSTS}:{PORTS}", "{ALL_HOSTS}:{PORTS}{PATH}", "{SCHEME_SOURCE}//{ALL_HOSTS}:{PORTS}{PATH}"],
+                "{ALL_HOSTS}": ["{HOST}", "{SUBDOMAIN}.{HOST}"],
+                "{SUBDOMAIN}": ["sub", "*"],
+                "{HOST}": ["{URL}", "{IP}", "*"],
+                "{URL}" : ["{EXAMPLE}", "{CROSSEXAMPLE}"],
+                "{IP}": ["{EXAMPLE_IP}", "{CROSSEXAMPLE_IP}"],
+                "{PORTS}" : ["80", "443", "{PORT}", "{SSL_PORT}", "*"],
+                "{PATH}": ["/"],
+                "{OPAQUE_SCHEME_SOURCE}": ["blob:", "data:"],
+                "{OTHER_SCHEME_SOURCE}": ["filesystem:", "file:", "ftp:", "javascript:", "mailto:", "resource:", "ssh:", "tel:", "urn:", "view-source:"],
+                "{POLICY_NAME}": ["myPolicy"]
+            },
+            "multiple_directives" : true,
+            "multiple_values" : true
+        },
+        "Cross-Origin-Embedder-Policy": {
+            "directives" : [
+                "unsafe-none",
+                "require-corp",
+                "credentialless"
+            ],
+            "multiple_directives" : false,
+            "multiple_values" : false
+        },
+        "Cross-Origin-Opener-Policy": {
+            "directives" : [
+                "unsafe-none",
+                "same-origin-allow-popups",
+                "same-origin",
+                "noopener-allow-popups"
+            ],
+            "multiple_directives" : false,
+            "multiple_values" : false
+        },
+        "Cross-Origin-Resource-Policy": {
+            "directives" : [
+                "same-site",
+                "same-origin",
+                "cross-origin"
+            ],
+            "multiple_directives" : false,
+            "multiple_values" : false
+        },
+        "Integrity-Policy": {
+            "directives_delimiter" : ",",
+            "directive_values_delimiter" : "=",
+            "values_delimiter": " ",
+            "directives": {
+                "blocked-destinations": ["script", "style"],
+                "sources": ["inline"],
+                "endpoints": ["integrity-violation"] // Need to set Reporting-Endpoints or Report-To HTTP response headers
+            },
+            "multiple_directives" : true,
+            "multiple_values" : true,
+            "enclose_in_parenthesis": true
+        },
+        "Integrity-Policy-Report-Only": {
+            "directives_delimiter" : ",",
+            "directive_values_delimiter" : "=",
+            "values_delimiter": " ",
+            "directives": {
+                "blocked-destinations": ["script", "style"],
+                "sources": ["inline"],
+                "endpoints": ["integrity-violation"] // Need to set Reporting-Endpoints or Report-To HTTP response headers
+            },
+            "multiple_directives" : true,
+            "multiple_values" : true,
+            "enclose_in_parenthesis": true
+        },
+        "Location": {
+            "directives": ["{URL}"],
+            "placeholders": {
+                "{URL}": ["/index.php"]
+            },
+            "multiple_directives" : false,
+            "multiple_values" : false
+        },
+        "Permissions-Policy": {
+            "directives_delimiter" : ",",
+            "directive_values_delimiter" : "=",
+            "values_delimiter" : " ",
+            "directives" : {
+                "accelerometer" : ["", "{ALLOWLIST}"],
+                "ambient-light-sensor": ["", "{ALLOWLIST}"],
+                "aria-notify": ["", "{ALLOWLIST}"],
+                "attribution-reporting": ["", "{ALLOWLIST}"],
+                "autoplay": ["", "{ALLOWLIST}"],
+                "bluetooth": ["", "{ALLOWLIST}"],
+                "browsing-topics": ["", "{ALLOWLIST}"],
+                "camera": ["", "{ALLOWLIST}"],
+                "captured-surface-control": ["", "{ALLOWLIST}"],
+                "compute-pressure": ["", "{ALLOWLIST}"],
+                "cross-origin-isolated": ["", "{ALLOWLIST}"],
+                "deferred-fetch": ["", "{ALLOWLIST}"],
+                "deferred-fetch-minimal": ["", "{ALLOWLIST}"],
+                "display-capture": ["", "{ALLOWLIST}"],
+                "encrypted-media": ["", "{ALLOWLIST}"],
+                "fullscreen": ["", "{ALLOWLIST}"],
+                "gamepad": ["", "{ALLOWLIST}"],
+                "geolocation": ["", "{ALLOWLIST}"],
+                "gyroscope": ["", "{ALLOWLIST}"],
+                "hid": ["", "{ALLOWLIST}"],
+                "identity-credentials-get": ["", "{ALLOWLIST}"],
+                "idle-detection": ["", "{ALLOWLIST}"],
+                "language-detector": ["", "{ALLOWLIST}"],
+                "local-fonts": ["", "{ALLOWLIST}"],
+                "magnetometer": ["", "{ALLOWLIST}"],
+                "microphone": ["", "{ALLOWLIST}"],
+                "midi": ["", "{ALLOWLIST}"],
+                "on-device-speech-recognition": ["", "{ALLOWLIST}"],
+                "otp-credentials": ["", "{ALLOWLIST}"],
+                "payment": ["", "{ALLOWLIST}"],
+                "picture-in-picture": ["", "{ALLOWLIST}"],
+                "private-state-token-issuance": ["", "{ALLOWLIST}"],
+                "private-state-token-redemption": ["", "{ALLOWLIST}"],
+                "publickey-credentials-create": ["", "{ALLOWLIST}"],
+                "publickey-credentials-get": ["", "{ALLOWLIST}"],
+                "screen-wake-lock": ["", "{ALLOWLIST}"],
+                "serial": ["", "{ALLOWLIST}"],
+                "speaker-selection": ["", "{ALLOWLIST}"],
+                "storage-access": ["", "{ALLOWLIST}"],
+                "translator": ["", "{ALLOWLIST}"],
+                "summarizer": ["", "{ALLOWLIST}"],
+                "usb": ["", "{ALLOWLIST}"],
+                "web-share": ["", "{ALLOWLIST}"],
+                "window-management": ["", "{ALLOWLIST}"],
+                "xr-spatial-tracking": ["", "{ALLOWLIST}"]
+            },
+            "placeholders" : {
+                "{ALLOWLIST}": ["self", "src", "\"{HOST_SOURCE}\""],
+                "{SCHEME_SOURCE}" : ["http:", "https:"],
+                "{HOST_SOURCE}" : ["{SCHEME_SOURCE}//{ALL_HOSTS}", "{SCHEME_SOURCE}//{ALL_HOSTS}:{PORTS}"],
+                "{ALL_HOSTS}": ["{HOST}", "{SUBDOMAIN}.{HOST}"],
+                "{SUBDOMAIN}": ["sub", "*"],
+                "{HOST}": ["{URL}", "{IP}", "*"],
+                "{URL}" : ["{EXAMPLE}", "{CROSSEXAMPLE}"],
+                "{IP}": ["{EXAMPLE_IP}", "{CROSSEXAMPLE_IP}"],
+                "{PORTS}" : ["80", "443", "{PORT}", "{SSL_PORT}", "*"]
+            },
+            "multiple_directives" : true,
+            "multiple_values" : true,
+            "enclose_in_parenthesis": true
+        },
+        "Referrer-Policy": {
+            "directives_delimiter" : ",",
+            "directives": [
+                "no-referrer",
+                "no-referrer-when-downgrade",
+                "origin",
+                "origin-when-cross-origin",
+                "same-origin",
+                "strict-origin",
+                "strict-origin-when-cross-origin",
+                "unsafe-url"
+            ],
+            "multiple_directives" : true,
+            "multiple_values" : false
+        },
+        "Reporting-Endpoints": {
+            "directives_delimiter" : ",",
+            "directive_values_delimiter" : "=",
+            "directives" : {
+                "csp-violation" : ["\"csp-report\""],
+                "integrity-violation" : ["\"integrity-report\""],
+                "permissions-violation" : ["\"permissions-report\""]
+            },
+            "multiple_directives" : true,
+            "multiple_values" : false
+        },
+        "Service-Worker-Allowed" : {
+            "directives" : ["{PATH}"],
+            "placeholders": {
+                "{PATH}": ["/", "/resources/"]
+            },
+            "multiple_directives" : false,
+            "multiple_values" : false
+        },
+        "Set-Cookie": {
+            "directives_delimiter" : ";",
+            "directive_values_delimiter" : "=",
+            "directives" : {
+                "Domain" : ["{DOMAIN}"],
+                "Expires" : ["{DATE}"],
+                "HttpOnly": [],
+                "Max-Age" : ["{NUMBER}"],
+                "Partitioned": [],
+                "Path" : ["{PATH}"],
+                "SameSite": ["{SAME-SITE}"],
+                "Secure": []
+            },
+            "placeholders" : {
+                "{COOKIE_PREFIX}": ["", "__Secure-", "__Host-", "__Http-", "__Host-Http-"],
+                "{COOKIE_NAME}" : ["foo"],
+                "{COOKIE_VALUE}" : ["bar"],
+                "{DOMAIN}": ["{EXAMPLE}", "{SUB_EXAMPLE}"],
+                "{DATE}": ["Wed, 21 Oct 2015 07:28:00 GMT", "Mon, 31 Dec 2035 23:59:59 GMT"],
+                "{NUMBER}": ["-1", "0", "600"],
+                "{PATH}": ["/", "/resources/"],
+                "{SAME-SITE}": ["Strict", "Lax", "None"]
+            },
+            // prefixes
+            "constants": ["{COOKIE_PREFIX}{COOKIE_NAME}={COOKIE_VALUE};"],
+            "multiple_directives" : true,
+            "multiple_values" : false
+        },
+        "Set-Login": {
+            "directives" : [
+                "logged-in",
+                "logged-out"
+            ],
+            "multiple_directives" : false,
+            "multiple_values" : false
+        },
+        "Speculation-Rules": {
+            "values_delimiter" : ",",
+            "directives" : ["{PATH}"],
+            "placeholders": {
+                "{PATH}": ["\"/default.json\"", "\"/rules/default.json\""]
+            },
+            "multiple_directives" : true,
+            "multiple_values" : false
+        },
+        "Strict-Transport-Security" : {
+            "directives_delimiter" : ";",
+            "directive_values_delimiter" : "=",
+            "directives" : {
+                "max-age" : ["{EXPIRE}"],
+                "includeSubDomains" : [],
+                "preload" : []
+            },
+            "placeholders" : {
+                "{EXPIRE}" : ["-1", "0", "600"]
+            },
+            "multiple_directives" : true,
+            "multiple_values" : false
+        },
+        "Supports-Loading-Mode": {
+            "directives" : [
+                "credentialed-prerender",
+                "fenced-frame"
+            ],
+            "multiple_directives" : false,
+            "multiple_values" : false
+        },
+        "Timing-Allow-Origin": {
+            "values_delimiter" : ",",
+            "directives" : ["*", "null", "{ORIGIN}"],
+            "placeholders": {
+                "{ORIGIN}": ["{EXAMPLE}", "{CROSSEXAMPLE}", "{SUB_EXAMPLE}"]
+            },
+            "multiple_directives" : true,
+            "multiple_values" : false
+        },
+        "WWW-Authenticate": {
+            "directives_delimiter": ",",
+            "values_delimiter": ",",
+            "directive_values_delimiter" : " ",
+            "directives": {
+                "Basic": ["{TOKEN}", "{AUTH_PARAMS}"],
+                "Bearer": ["{TOKEN}", "{AUTH_PARAMS}"],
+                "Digest": ["{TOKEN}", "{AUTH_PARAMS}"],
+                "HOBA": ["{TOKEN}", "{AUTH_PARAMS}"],
+                "Mutual": ["{TOKEN}", "{AUTH_PARAMS}"],
+                "NLTM": ["{TOKEN}", "{AUTH_PARAMS}"],
+                "Negotiate": ["{TOKEN}", "{AUTH_PARAMS}"],
+                "VAPID": ["{TOKEN}", "{AUTH_PARAMS}"],
+                "SCRAM": ["{TOKEN}", "{AUTH_PARAMS}"],
+                "AWS4-HMAC-SHA256": ["{TOKEN}", "{AUTH_PARAMS}"]
+            },
+            "placeholders": {
+                "{TOKEN}": ["cmFuZG9tIGF1dGhlbnRpY2F0aW9uIHRva2Vu"],
+                "{AUTH_PARAMS}": ["realm=\"{REALM}\"", "domain={DOMAIN_VALUES}", "nonce=\"{NONCES}\"", "opaque=\"{OPAQUE}\"", "stale={STALE}", "algorithm={ALGORITHM}", "qop={QOP}", "charset=\"{CHARSET}\"", "max-age=\"{MAX-AGE}\"", "challenge=\"{CHALLENGE}\"", "userhash={USERHASH}"],
+                "{REALM}": ["code"],
+                "{DOMAIN_VALUES}": ["\"{URI}\"", "{DOMAIN}"],
+                "{URI}": ["/resources/index.php"],
+                "{DOMAIN}": ["https://{EXAMPLE}/"],
+                "{NONCES}": ["7ypf/xlj9XXwfDPEoM4URrv/xwf94BcCAzFZH4GiTo0v"],
+                "{OPAQUE}": ["FQhe/qaU925kfnzjCev0ciny7QMkPqMAFRtzCUYo5tdS"],
+                "{STALE}": ["true", "false"],
+                "{ALGORITHM}": ["SHA-256", "SHA-512", "MD5", "SHA-256-sess", "SHA-512-sess", "MD5-sess"],
+                "{QOP}": ["auth", "auth-int", "\"auth, auth-int\""],
+                "{CHARSET}": ["UTF-8"],
+                "{MAX-AGE}": ["180"],
+                "{CHALLENGE}": ["16:MTEyMzEyMzEyMw==1:028:https://www.example.com:8080:3:MTI48:NjgxNDdjOTctNDYxYi00MzEwLWJlOWItNGM3MDcyMzdhYjUz"],
+                "{USERHASH}": ["true", "false"]
+            },
+            "multiple_directives": false,
+            "multiple_values": true
+        },
+        "X-Content-Type-Options": {
+            "directives" : ["nosniff"],
+            "multiple_directives" : false,
+            "multiple_values" : false
+        },
+        "X-Frame-Options" : {
+            "directives_delimiter" : ",",
+            "directives" : {
+                "DENY" : [],
+                "SAMEORIGIN" : [],
+                "ALLOW-FROM" : ["{ORIGIN}"]
+            },
+            "placeholders" : {
+                "{ORIGIN}" : ["{SCHEME}://{HOST}", "{SCHEME}://{HOST}:{PORTS}"],
+                "{SCHEME}": ["https", "http"],
+                "{HOST}": ["{EXAMPLE}", "{SUB_EXAMPLE}", "{CROSSEXAMPLE}", "localhost"],
+                "{PORTS}": ["443", "80", "{PORT}", "{SSL_PORT}"]
+            },
+            "multiple_directives" : false,
+            "multiple_values" : false
+        },
+        "X-Permitted-Cross-Domain-Policies": {
+            "directives" : [
+                "none",
+                "master-only",
+                "by-content-type",
+                "by-ftp-filename",
+                "all",
+                "none-this-response"
+            ],
+            "multiple_directives" : false,
+            "multiple_values" : false
+        },
+        "X-Powered-By": {
+            "directives" : ["express"],
+            "multiple_directives" : false,
+            "multiple_values" : false
+        },
+        "X-XSS-Protection": {
+            "directives_delimiter" : ";",
+            "directive_values_delimiter" : "=",
+            "directives" : {
+                "0" : [],
+                "1" : ["", ";mode=block", ";report=/report-violation"]
+            },
+            "multiple_directives" : true,
+            "multiple_values" : false
+        },
+        "X-DNS-Prefetch-Control": {
+            "directives" : [
+                "on",
+                "off"
+            ],
+            "multiple_directives" : false,
+            "multiple_values" : false
+        },
+        "X-Robots-Tag": {
+            "directives_delimiter": ",",
+            "directive_values_delimiter": ":",
+            "directives" : {
+                "all" : [],
+                "noindex" : [],
+                "nofollow" : [],
+                "none" : [],
+                "nosnippet" : [],
+                "indexifembedded" : [],
+                "max-snippet": ["{NUMBER}"],
+                "max-image-preview": ["none", "standard", "large"],
+                "max-video-preview": ["0", "-1"],
+                "notranslate": [],
+                "noimageindex": [],
+                "unavailable_after": ["{DATETIME}"]
+            },
+            "placeholders": {
+                "{NUMBER}": ["-1", "0", "1000"],
+                "{DATETIME}": ["Wed, 03 Dec 2025 13:09:53 GMT"]
+            },
+            "constants": ["", "BadBot:"],
+            "multiple_directives" : true,
+            "multiple_values" : false
+        }
+    }
+}

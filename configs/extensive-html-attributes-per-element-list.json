@@ -1,0 +1,481 @@
+{
+  "a": [
+    "download",
+    "href",
+    "hreflang",
+    "ping",
+    "referrerpolicy",
+    "rel",
+    "target",
+    "type"
+  ],
+  "abbr": [
+    "title"
+  ],
+  "area": [
+    "alt",
+    "coords",
+    "download",
+    "href",
+    "ping",
+    "referrerpolicy",
+    "rel",
+    "shape",
+    "target"
+  ],
+  "audio": [
+    "autoplay",
+    "controls",
+    "crossorigin",
+    "loading",
+    "loop",
+    "muted",
+    "preload",
+    "src"
+  ],
+  "base": [
+    "href",
+    "target"
+  ],
+  "bdo": [
+    "dir"
+  ],
+  "blockquote": [
+    "cite"
+  ],
+  "body": [
+    "onafterprint",
+    "onbeforeprint",
+    "onbeforeunload",
+    "onhashchange",
+    "onlanguagechange",
+    "onmessage",
+    "onmessageerror",
+    "onoffline",
+    "ononline",
+    "onpagehide",
+    "onpagereveal",
+    "onpageshow",
+    "onpageswap",
+    "onpopstate",
+    "onrejectionhandled",
+    "onstorage",
+    "onunhandledrejection",
+    "onunload"
+  ],
+  "button": [
+    "command",
+    "commandfor",
+    "disabled",
+    "form",
+    "formaction",
+    "formenctype",
+    "formmethod",
+    "formnovalidate",
+    "formtarget",
+    "name",
+    "popovertarget",
+    "popovertargetaction",
+    "type",
+    "value"
+  ],
+  "canvas": [
+    "height",
+    "width"
+  ],
+  "col": [
+    "span"
+  ],
+  "colgroup": [
+    "span"
+  ],
+  "data": [
+    "value"
+  ],
+  "del": [
+    "cite",
+    "datetime"
+  ],
+  "details": [
+    "name",
+    "open"
+  ],
+  "dfn": [
+    "title"
+  ],
+  "dialog": [
+    "closedby",
+    "open"
+  ],
+  "embed": [
+    "height",
+    "src",
+    "type",
+    "width"
+  ],
+  "fieldset": [
+    "disabled",
+    "form",
+    "name"
+  ],
+  "form": [
+    "accept-charset",
+    "action",
+    "autocomplete",
+    "enctype",
+    "method",
+    "name",
+    "novalidate",
+    "target"
+  ],
+  "global": [
+    "accesskey",
+    "autocapitalize",
+    "autocorrect",
+    "autofocus",
+    "class",
+    "contenteditable",
+    "dir",
+    "draggable",
+    "enterkeyhint",
+    "headingoffset",
+    "headingreset",
+    "hidden",
+    "id",
+    "inert",
+    "inputmode",
+    "is",
+    "itemid",
+    "itemprop",
+    "itemref",
+    "itemscope",
+    "itemtype",
+    "lang",
+    "nonce",
+    "popover",
+    "slot",
+    "spellcheck",
+    "style",
+    "tabindex",
+    "title",
+    "translate",
+    "writingsuggestions"
+  ],
+  "global_event_handlers": [
+    "onauxclick",
+    "onbeforeinput",
+    "onbeforematch",
+    "onbeforetoggle",
+    "onblur",
+    "oncancel",
+    "oncanplay",
+    "oncanplaythrough",
+    "onchange",
+    "onclick",
+    "onclose",
+    "oncommand",
+    "oncontextlost",
+    "oncontextmenu",
+    "oncontextrestored",
+    "oncopy",
+    "oncuechange",
+    "oncut",
+    "ondblclick",
+    "ondrag",
+    "ondragend",
+    "ondragenter",
+    "ondragleave",
+    "ondragover",
+    "ondragstart",
+    "ondrop",
+    "ondurationchange",
+    "onemptied",
+    "onended",
+    "onerror",
+    "onfocus",
+    "onformdata",
+    "oninput",
+    "oninvalid",
+    "onkeydown",
+    "onkeypress",
+    "onkeyup",
+    "onload",
+    "onloadeddata",
+    "onloadedmetadata",
+    "onloadstart",
+    "onmousedown",
+    "onmouseenter",
+    "onmouseleave",
+    "onmousemove",
+    "onmouseout",
+    "onmouseover",
+    "onmouseup",
+    "onpaste",
+    "onpause",
+    "onplay",
+    "onplaying",
+    "onprogress",
+    "onratechange",
+    "onreset",
+    "onresize",
+    "onscroll",
+    "onscrollend",
+    "onsecuritypolicyviolation",
+    "onseeked",
+    "onseeking",
+    "onselect",
+    "onslotchange",
+    "onstalled",
+    "onsubmit",
+    "onsuspend",
+    "ontimeupdate",
+    "ontoggle",
+    "onvolumechange",
+    "onwaiting",
+    "onwheel"
+  ],
+  "iframe": [
+    "allow",
+    "allowfullscreen",
+    "height",
+    "loading",
+    "name",
+    "referrerpolicy",
+    "sandbox",
+    "src",
+    "srcdoc",
+    "width"
+  ],
+  "img": [
+    "alt",
+    "controls",
+    "crossorigin",
+    "decoding",
+    "fetchpriority",
+    "height",
+    "ismap",
+    "loading",
+    "referrerpolicy",
+    "sizes",
+    "src",
+    "srcset",
+    "usemap",
+    "width"
+  ],
+  "input": [
+    "accept",
+    "alpha",
+    "alt",
+    "autocomplete",
+    "checked",
+    "colorspace",
+    "dirname",
+    "disabled",
+    "form",
+    "formaction",
+    "formenctype",
+    "formmethod",
+    "formnovalidate",
+    "formtarget",
+    "height",
+    "list",
+    "max",
+    "maxlength",
+    "min",
+    "minlength",
+    "multiple",
+    "name",
+    "pattern",
+    "placeholder",
+    "popovertarget",
+    "popovertargetaction",
+    "readonly",
+    "required",
+    "size",
+    "src",
+    "step",
+    "title",
+    "type",
+    "value",
+    "width"
+  ],
+  "ins": [
+    "cite",
+    "datetime"
+  ],
+  "label": [
+    "for"
+  ],
+  "li": [
+    "value"
+  ],
+  "link": [
+    "as",
+    "blocking",
+    "color",
+    "crossorigin",
+    "disabled",
+    "fetchpriority",
+    "href",
+    "hreflang",
+    "imagesizes",
+    "imagesrcset",
+    "integrity",
+    "media",
+    "referrerpolicy",
+    "rel",
+    "sizes",
+    "title",
+    "type"
+  ],
+  "map": [
+    "name"
+  ],
+  "meta": [
+    "charset",
+    "content",
+    "http-equiv",
+    "media",
+    "name"
+  ],
+  "meter": [
+    "high",
+    "low",
+    "max",
+    "min",
+    "optimum",
+    "value"
+  ],
+  "object": [
+    "data",
+    "form",
+    "height",
+    "name",
+    "type",
+    "width"
+  ],
+  "ol": [
+    "reversed",
+    "start",
+    "type"
+  ],
+  "optgroup": [
+    "disabled",
+    "label"
+  ],
+  "option": [
+    "disabled",
+    "label",
+    "selected",
+    "value"
+  ],
+  "output": [
+    "for",
+    "form",
+    "name"
+  ],
+  "progress": [
+    "max",
+    "value"
+  ],
+  "q": [
+    "cite"
+  ],
+  "script": [
+    "async",
+    "blocking",
+    "crossorigin",
+    "defer",
+    "fetchpriority",
+    "integrity",
+    "nomodule",
+    "referrerpolicy",
+    "src",
+    "type"
+  ],
+  "select": [
+    "autocomplete",
+    "disabled",
+    "form",
+    "multiple",
+    "name",
+    "required",
+    "size"
+  ],
+  "slot": [
+    "name"
+  ],
+  "source": [
+    "height",
+    "media",
+    "sizes",
+    "src",
+    "srcset",
+    "type",
+    "width"
+  ],
+  "style": [
+    "blocking",
+    "media",
+    "title"
+  ],
+  "td": [
+    "colspan",
+    "headers",
+    "rowspan"
+  ],
+  "template": [
+    "shadowrootclonable",
+    "shadowrootcustomelementregistry",
+    "shadowrootdelegatesfocus",
+    "shadowrootmode",
+    "shadowrootserializable",
+    "shadowrootslotassignment"
+  ],
+  "textarea": [
+    "autocomplete",
+    "cols",
+    "dirname",
+    "disabled",
+    "form",
+    "maxlength",
+    "minlength",
+    "name",
+    "placeholder",
+    "readonly",
+    "required",
+    "rows",
+    "wrap"
+  ],
+  "th": [
+    "abbr",
+    "colspan",
+    "headers",
+    "rowspan",
+    "scope"
+  ],
+  "time": [
+    "datetime"
+  ],
+  "track": [
+    "default",
+    "kind",
+    "label",
+    "src",
+    "srclang"
+  ],
+  "video": [
+    "autoplay",
+    "controls",
+    "crossorigin",
+    "height",
+    "loading",
+    "loop",
+    "muted",
+    "playsinline",
+    "poster",
+    "preload",
+    "src",
+    "width"
+  ]
+}

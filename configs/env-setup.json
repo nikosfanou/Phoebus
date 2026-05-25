@@ -1,0 +1,124 @@
+{
+    "docker": {
+        "network": "my-net",
+        "subnet": "172.100.0.0/16",
+        "image": "custom-httpd-image",
+        "mount": [
+            {
+                "containers": "all",
+                "source-path": "./apache-files",
+                "target-path": "/usr/local/apache2/htdocs",
+                "source-file": null,
+                "target-file": null,
+                "default-files": [
+                    "./default-files/tests/*"
+                ]
+            },
+            {
+                "containers": "all",
+                "source-path": "./apache-configs",
+                "target-path": "/usr/local/apache2/conf",
+                "source-file": "httpd.conf",
+                "target-file": "httpd.conf",
+                "default-files": [
+                    "./default-files/configs/httpd.conf"
+                ]
+            },
+            {
+                "containers": "all",
+                "source-path": "./apache-configs",
+                "target-path": "/usr/local/apache2/conf",
+                "source-file": "httpd_custom.conf",
+                "target-file": "httpd_custom.conf",
+                "default-files": [
+                    "./default-files/configs/httpd_custom.conf"
+                ]
+            },
+            {
+                "containers": "all",
+                "source-path": "./apache-prepends",
+                "target-path": "/usr/local/apache2/prepends",
+                "source-file": null,
+                "target-file": null,
+                "default-files": [
+                    "./default-files/php-bootstrap/prepend.php",
+                    "./default-files/php-bootstrap/env.php",
+                    "./default-files/php-bootstrap/runtime.php"
+                ]
+            },
+            {
+                "containers": "all",
+                "source-path": "./apache-endpoints",
+                "target-path": "/usr/local/apache2/api",
+                "source-file": null,
+                "target-file": null,
+                "default-files": [
+                    "./endpoint-scripts/*"
+                ]
+            }
+        ],
+        "copy": [],
+        "path-to-serve-paths": "/usr/local/apache2/htdocs/resources",
+        "websocket-server": {
+            "name": "ws-server",
+            "port": 8001,
+            "ssl_port": 8000,
+            "dockerfile": "./websockets"
+        }
+    },
+    "localhost": {
+        "conf-file": "localhost.conf",
+        "copy": [
+            {
+                "source-path": "./default-files/configs/localhost_custom.conf",
+                "target-path": "/etc/apache2/localhost_custom.conf"
+            },
+            {
+                "source-path": "./default-files/configs/ports.conf",
+                "target-path": "/etc/apache2/ports.conf"
+            },
+            {
+                "source-path": "./default-files/php-bootstrap/prepend.php",
+                "target-path": "/etc/apache2/prepend.php"
+            },
+            {
+                "source-path": "./default-files/php-bootstrap/env.php",
+                "target-path": "/etc/apache2/env.php"
+            },
+            {
+                "source-path": "./default-files/php-bootstrap/runtime.php",
+                "target-path": "/etc/apache2/runtime.php"
+            },
+            {
+                "source-path": "./default-files/configs/localhost.conf",
+                "target-path": "/etc/apache2/sites-available/localhost.conf"
+            },
+            {
+                "source-path": "./default-files/tests/index.php",
+                "target-path": "/var/www/localhost/index.php"
+            },
+            {
+                "source-path": "./default-files/tests/resources",
+                "target-path": "/var/www/localhost/resources",
+                "folder": true
+            },
+            {
+                "source-path": "./endpoint-scripts/*",
+                "target-path": "/usr/lib/apache2/api",
+                "skip-delete": true
+            }
+        ],
+        "path-to-serve-paths": "/var/www/localhost/resources"
+    },
+    "ssl": {
+        "certs-path": "./certs",
+        "target-path": {
+            "docker": "/usr/local/apache2/conf",
+            "localhost": "/etc/apache2/certs"
+        },
+        "CA": "myCA",
+        "CA-passphrase": "1234567890",
+        "CA-info": "/C=XX/O=Private/OU=Internal/CN=myCA.com",
+        "servers-info": "/C=XX/O=Private/OU=Internal/CN={DOMAIN}"
+    }
+}

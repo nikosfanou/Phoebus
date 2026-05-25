@@ -1,0 +1,180 @@
+{
+    "window": [
+        "afterprint",
+        "beforeprint",
+        "beforeunload",
+        "blur",
+        "focus",
+        "hashchange",
+        "languagechange",
+        "load",
+        "message",
+        "messageerror",
+        "offline",
+        "online",
+        "pagehide",
+        "pagereveal",
+        "pageshow",
+        "pageswap",
+        "popstate",
+        "rejectionhandled",
+        "resize",
+        "storage",
+        "unhandledrejection",
+        "unload"
+    ],
+    "document": [
+        "DOMContentLoaded",
+        "readystatechange",
+        "visibilitychange"
+    ],
+    "navigation": [
+        "currententrychange",
+        "dispose",
+        "navigate",
+        "navigateerror",
+        "navigatesuccess"
+    ],
+    "form": [
+        "beforeinput",
+        "blur",
+        "change",
+        "contextmenu",
+        "focus",
+        "focusin",
+        "focusout",
+        "input",
+        "invalid",
+        "reset",
+        "search",
+        "select",
+        "submit",
+        "formdata"
+    ],
+    "media": [
+        "abort",
+        "addtrack",
+        "canplay",
+        "canplaythrough",
+        "change",
+        "cuechange",
+        "durationchange",
+        "emptied",
+        "ended",
+        "error",
+        "load",
+        "loadeddata",
+        "loadedmetadata",
+        "loadstart",
+        "pause",
+        "play",
+        "playing",
+        "progress",
+        "ratechange",
+        "removetrack",
+        "seeked",
+        "seeking",
+        "stalled",
+        "suspend",
+        "timeupdate",
+        "volumechange",
+        "waiting"
+    ],
+    "pointer": [
+        "pointerdown",
+        "pointermove",
+        "pointerup",
+        "pointercancel",
+        "pointerover",
+        "pointerout",
+        "pointerenter",
+        "pointerleave",
+        "pointerrawupdate",
+        "gotpointercapture",
+        "lostpointercapture"
+    ],
+    "animation": [
+        "animationstart",
+        "animationiteration",
+        "animationend",
+        "webkitanimationstart",
+        "webkitanimationiteration",
+        "webkitanimationend"
+    ],
+    "transition": [
+        "transitionrun",
+        "transitionstart",
+        "transitionend",
+        "transitioncancel",
+        "webkittransitionend"
+    ],
+    "mouse": [
+        "auxclick",
+        "click",
+        "contextmenu",
+        "dblclick",
+        "mousedown",
+        "mouseenter",
+        "mouseleave",
+        "mousemove",
+        "mouseout",
+        "mouseover",
+        "mouseup",
+        "mousewheel",
+        "wheel"
+    ],
+    "keyboard": [
+        "keydown",
+        "keypress",
+        "keyup"
+    ],
+    "selection": [
+        "selectstart",
+        "selectionchange"
+    ],
+    "drag": [
+        "drag",
+        "dragend",
+        "dragenter",
+        "dragleave",
+        "dragover",
+        "dragstart",
+        "drop"
+    ],
+    "scroll": [
+        "scroll",
+        "scrollend"
+    ],
+    "clipboard": [
+        "copy",
+        "cut",
+        "paste"   
+    ],
+    "xr": [
+        "beforexrselect"
+    ],
+    "canvas": [
+        "contextlost",
+        "contextrestored"
+    ],
+    "violation": [
+        "securitypolicyviolation"
+    ],
+    "slot": [
+        "slotchange"
+    ],
+    "misc": [
+        "beforetoggle",
+        "toggle"
+    ],
+    "lifecycle": [
+        "cancel",
+        "close"
+    ],
+    "visibility": [
+        "beforematch"
+    ],
+    "interaction": [
+        "command"
+    ]
+}

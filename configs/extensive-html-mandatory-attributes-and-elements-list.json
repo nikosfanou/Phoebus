@@ -1,0 +1,582 @@
+{
+    "a": [
+        {
+            "mandatory_attributes": {
+                "href": "{ANCHOR_URL}"
+            }
+        }
+    ],
+    "area": [
+        {
+            "mandatory_ancestor": {
+                "tag": "map"
+            },
+            "mandatory_attributes": {
+                "href": "{AREA_URL}",
+                "alt": "Area URL"
+            }
+        }
+    ],
+    "audio": [
+        {
+            "mandatory_attributes": {
+                "src": "{AUDIO_URL}"
+            }
+        },
+        {
+            "mandatory_child": {
+                "tag": "source",
+                "no_defaults": true,
+                "mandatory_attributes": {
+                    "src": "{AUDIO_URL}"
+                }
+            }
+        }
+    ],
+    "base": [
+        {
+            "mandatory_attributes": {
+                "href": "{BASE_URL}"
+            }
+        }
+    ],
+    "caption": [
+        {
+            "mandatory_parent": {
+                "tag": "table"
+            }
+        }
+    ],
+    "col": [
+        {
+            "mandatory_parent": {
+                "tag": "colgroup"
+            }
+        }
+    ],
+    "colgroup": [
+        {
+            "mandatory_parent": {
+                "tag": "table"
+            }
+        }
+    ],
+    "dd": [
+        {
+            "mandatory_ancestor": {
+                "tag": "dl"
+            }
+        }
+    ],
+    "dt": [
+        {
+            "mandatory_ancestor": {
+                "tag": "dl"
+            }
+        }
+    ],
+    "embed": [
+        {
+            "mandatory_attributes": {
+                "src": "{FRAME_URL}",
+                "type": "text/html"
+            }
+        }
+    ],
+    "figcaption": [
+        {
+            "mandatory_parent": {
+                "tag": "figure"
+            }
+        }
+    ],
+    "form": [
+        {
+            "mandatory_attributes": {
+                "action": "{FORM_ACTION}"
+            }
+        }
+    ],
+    "iframe": [
+        {
+            "mandatory_attributes": {
+                "src": "{FRAME_URL}"
+            }
+        },
+        {
+            "mandatory_attributes": {
+                "srcdoc": "{SRCDOC}"
+            }
+        }
+    ],
+    "input": [
+        {
+            "mandatory_attributes": {
+                "type": "image",
+                "src": "{IMG_URL}"
+            }
+        },
+        {
+            "mandatory_attributes": {
+                "type": "{INPUT_TYPES_NO_IMAGE}"
+            }
+        }
+    ],
+    "img": [
+        {
+            "mandatory_attributes": {
+                "src": "{IMG_URL}"
+            }
+        }
+    ],
+    "legend": [
+        {
+            "mandatory_parent": {
+                "tag": "fieldset"
+            }
+        }
+    ],
+    "li": [
+        {
+            "mandatory_parent": {
+                "tag": "ul"
+            }
+        },
+        {
+            "mandatory_parent": {
+                "tag": "ol"
+            }
+        },
+        {
+            "mandatory_parent": {
+                "tag": "menu"
+            }
+        }
+    ],
+    "link": [
+        {
+            "mandatory_attributes": {
+                "href": "{CSS_URL}",
+                "rel": "stylesheet"
+            }
+        },
+        {
+            "mandatory_attributes": {
+                "href": "{ICON_URL}",
+                "rel": "icon"
+            }
+        },
+        {
+            "mandatory_attributes": {
+                "href": "{APPLE_ICON_URL}",
+                "rel": "apple-touch-icon"
+            }
+        },
+        {
+            "mandatory_attributes": {
+                "href": "{MANIFEST_URL}",
+                "rel": "manifest"
+            }
+        },
+        {
+            "mandatory_attributes": {
+                "href": "{HTML_URL}",
+                "rel": "alternate"
+            }
+        },
+        {
+            "mandatory_attributes": {
+                "href": "{HTML_URL}",
+                "rel": "author"
+            }
+        },
+        {
+            "mandatory_attributes": {
+                "href": "{HTML_URL}",
+                "rel": "help"
+            }
+        },
+        {
+            "mandatory_attributes": {
+                "href": "{HTML_URL}",
+                "rel": "license"
+            }
+        },
+        {
+            "mandatory_attributes": {
+                "href": "{HTML_URL}",
+                "rel": "privacy-policy"
+            }
+        },
+        {
+            "mandatory_attributes": {
+                "href": "{HTML_URL}",
+                "rel": "terms-of-service"
+            }
+        },
+        {
+            "mandatory_attributes": {
+                "href": "{HTML_URL}",
+                "rel": "bookmark"
+            }
+        },
+        {
+            "mandatory_attributes": {
+                "href": "{HTML_URL}",
+                "rel": "me"
+            }
+        },
+        {
+            "mandatory_attributes": {
+                "href": "{HTML_URL}",
+                "rel": "tag"
+            }
+        },
+        {
+            "mandatory_attributes": {
+                "href": "{HTML_URL}",
+                "rel": "next"
+            }
+        },
+        {
+            "mandatory_attributes": {
+                "href": "{HTML_URL}",
+                "rel": "prev"
+            }
+        },
+        {
+            "mandatory_attributes": {
+                "href": "{SCRIPT_URL}",
+                "rel": "preload",
+                "as": "script"
+            }
+        },
+        {
+            "mandatory_attributes": {
+                "href": "{SCRIPT_URL}",
+                "rel": "preload",
+                "as": "fetch"
+            }
+        },
+        {
+            "mandatory_attributes": {
+                "href": "{JSON_URL}",
+                "rel": "preload",
+                "as": "json"
+            }
+        },
+        {
+            "mandatory_attributes": {
+                "href": "{TEXT_URL}",
+                "rel": "preload",
+                "as": "text"
+            }
+        },
+        {
+            "mandatory_attributes": {
+                "href": "{FONT_URL}",
+                "rel": "preload",
+                "as": "font"
+            }
+        },
+        {
+            "mandatory_attributes": {
+                "href": "{CSS_URL}",
+                "rel": "preload",
+                "as": "style"
+            }
+        },
+        {
+            "mandatory_attributes": {
+                "href": "{IMG_URL}",
+                "rel": "preload",
+                "as": "image"
+            }
+        },
+        {
+            "mandatory_attributes": {
+                "href": "{VIDEO_URL}",
+                "rel": "preload",
+                "as": "video"
+            }
+        },
+        {
+            "mandatory_attributes": {
+                "href": "{AUDIO_URL}",
+                "rel": "preload",
+                "as": "audio"
+            }
+        },
+        {
+            "mandatory_attributes": {
+                "href": "{VTT_URL}",
+                "rel": "preload",
+                "as": "track"
+            }
+        },
+        {
+            "mandatory_attributes": {
+                "href": "{HTML_URL}",
+                "rel": "canonical"
+            }
+        },
+        {
+            "mandatory_attributes": {
+                "href": "{SCRIPT_URL}",
+                "rel": "modulepreload"
+            }
+        },
+        {
+            "mandatory_attributes": {
+                "href": "{HTML_URL}",
+                "rel": "prefetch"
+            }
+        },
+        {
+            "mandatory_attributes": {
+                "href": "{ORIGIN_URL}",
+                "rel": "dns-prefetch"
+            }
+        },
+        {
+            "mandatory_attributes": {
+                "href": "{ORIGIN_URL}",
+                "rel": "preconnect"
+            }
+        }
+    ],
+    "map": [
+        {
+            "mandatory_attributes": {
+                "name": "map-name"
+            },
+            "mandatory_child": {
+                "tag": "area"
+            }
+        }
+    ],
+    "meta": [
+        {
+            "mandatory_attributes": {
+                "name": "meta-name",
+                "content": "dummy"
+            }
+        },
+        {
+            "mandatory_attributes": {
+                "charset": "utf-8"
+            }
+        },
+        {
+            "mandatory_attributes": {
+                "itemprop": "meta-item-name",
+                "content": "dummy"
+            }
+        }
+    ],
+    "object": [
+        {
+            "mandatory_attributes": {
+                "data": "{FRAME_URL}",
+                "type": "text/html"
+            }
+        }
+    ],
+    "optgroup": [
+        {
+            "mandatory_attributes": {
+                "label": "optgroup-label"
+            },
+            "mandatory_parent": {
+                "tag": "select"
+            }
+        }
+    ],
+    "option": [
+        {
+            "mandatory_parent": {
+                "tag": "select"
+            }
+        },
+        {
+            "mandatory_parent": {
+                "tag": "optgroup"
+            }
+        },
+        {
+            "mandatory_parent": {
+                "tag": "datalist"
+            }
+        }
+    ],
+    "picture": [
+        {
+            "mandatory_child": {
+                "tag": "img"
+            }
+        }
+    ],
+    "rp": [
+        {
+            "mandatory_parent": {
+                "tag": "ruby"
+            }
+        }
+    ],
+    "rt": [
+        {
+            "mandatory_parent": {
+                "tag": "ruby"
+            }
+        }
+    ],
+    "script": [
+        {
+            "mandatory_attributes": {
+                "src": "{SCRIPT_URL}"
+            }
+        },
+        {
+            "mandatory_attributes": {
+                "src": "{SCRIPT_URL}",
+                "type": "module"
+            }
+        },
+        {
+            "mandatory_contents": "console.log(true)"
+        }
+    ],
+    "selectedcontent": [
+        {
+            "mandatory_parent": {
+                "tag": "button"
+            }
+        }
+    ],
+    "source": [
+        {
+            "mandatory_parent": {
+                "tag": "audio",
+                "no_defaults": true
+            },
+            "mandatory_attributes": {
+                "src": "{AUDIO_URL}"
+            }
+        },
+        {
+            "mandatory_parent": {
+                "tag": "picture"
+            },
+            "mandatory_attributes": {
+                "src": "{IMG_URL}"
+            }
+        },
+        {
+            "mandatory_parent": {
+                "tag": "video",
+                "no_defaults": true
+            },
+            "mandatory_attributes": {
+                "src": "{VIDEO_URL}"
+            }
+        }
+    ],
+    "style": [
+        {
+            "mandatory_contents": "body { background-color: lightgray; }"
+        }
+    ],
+    "summary": [
+        {
+            "mandatory_parent": {
+                "tag": "details"
+            }
+        }
+    ],
+    "tbody": [
+        {
+            "mandatory_parent": {
+                "tag": "table"
+            }
+        }
+    ],
+    "td": [
+        {
+            "mandatory_parent": {
+                "tag": "tr"
+            }
+        }
+    ],
+    "tfoot": [
+        {
+            "mandatory_parent": {
+                "tag": "table"
+            }
+        }
+    ],
+    "th": [
+        {
+            "mandatory_parent": {
+                "tag": "tr"
+            }
+        }
+    ],
+    "thead": [
+        {
+            "mandatory_parent": {
+                "tag": "table"
+            }
+        }
+    ],
+    "tr": [
+        {
+            "mandatory_parent": {
+                "tag": "thead"
+            }
+        },
+        {
+            "mandatory_parent": {
+                "tag": "tbody"
+            }
+        },
+        {
+            "mandatory_parent": {
+                "tag": "tfoot"
+            }
+        }
+    ],
+    "track": [
+        {
+            "mandatory_parent": {
+                "tag": "audio"
+            },
+            "mandatory_attributes": {
+                "src": "{VTT_URL}"
+            }
+        },
+        {
+            "mandatory_parent": {
+                "tag": "video"
+            },
+            "mandatory_attributes": {
+                "src": "{VTT_URL}"
+            }
+        }
+    ],
+    "video": [
+        {
+            "mandatory_attributes": {
+                "src": "{VIDEO_URL}"
+            }
+        },
+        {
+            "mandatory_child": {
+                "tag": "source",
+                "no_defaults": true,
+                "mandatory_attributes": {
+                    "src": "{VIDEO_URL}"
+                }
+            }
+        }
+    ]
+}

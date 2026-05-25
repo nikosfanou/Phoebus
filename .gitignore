@@ -1,0 +1,13 @@
+.vscode
+db/
+utils/__pycache__
+apache-files
+apache-configs
+apache-endpoints
+apache-prepends
+certs
+geckodriver.log
+__pycache__
+archive
+reports
+logs

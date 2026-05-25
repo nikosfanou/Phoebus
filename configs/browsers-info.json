@@ -1,0 +1,63 @@
+{
+  "chrome": {
+    "latest-version": "",
+    "download_latest_version_url": "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64",
+    "download_version_url": "https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_{CHROME_VERSION}-1_amd64",
+    "check_latest_version_url": "https://versionhistory.googleapis.com/v1/chrome/platforms/linux/channels/stable/versions",
+    "old_download_webdriver_url": "https://chromedriver.storage.googleapis.com/{CHROMIUM_VERSION}/chromedriver_linux64.zip",
+    "download_webdriver_url": "https://storage.googleapis.com/chrome-for-testing-public/{CHROMIUM_VERSION}/linux64/chromedriver-linux64",
+    "check_webdriver_release_url": "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_{MAJOR_VERSION}",
+    "check_chromedriver_latest_version_url": "https://chromedriver.storage.googleapis.com/LATEST_RELEASE",
+    "save_to_directory": "archive/Chrome"
+  },
+  "firefox": {
+    "latest-version": "",
+    "download_version_url": "https://ftp.mozilla.org/pub/firefox/releases/{FIREFOX_VERSION}/linux-x86_64/en-US/firefox-{FIREFOX_VERSION}",
+    "check_latest_version_url": "https://www.mozilla.org/en-US/firefox/releases/",
+    "download_webdriver_url": "https://github.com/mozilla/geckodriver/releases/download/v{GECKODRIVER_VERSION}/geckodriver-v{GECKODRIVER_VERSION}-linux64",
+    "version_driver_mapping_url": "https://firefox-source-docs.mozilla.org/testing/geckodriver/Support.html",
+    "save_to_directory": "archive/Firefox"
+  },
+  "opera": {
+    "latest-version": "",
+    "download_latest_version_url": "https://deb.opera.com/opera/pool/non-free/o/opera-stable/opera-stable_{OPERA_LATEST_VERSION}_amd64",
+    "download_latest_version_url_alternative": "https://www.opera.com/download/get/?partner=www&opsys=Linux",
+    "download_version_url": "https://get.opera.com/ftp/pub/opera/desktop/{OPERA_VERSION}/linux/opera-stable_{OPERA_VERSION}_amd64",
+    "check_latest_version_url": "https://www.ubuntuupdates.org/package/opera/stable/non-free/base/opera-stable",
+    "download_webdriver_url": "https://github.com/operasoftware/operachromiumdriver/releases/download/v.{OPERA_DRIVER_VERSION}/operadriver_linux64",
+    "check_webdriver_release_url": "https://github.com/operasoftware/operachromiumdriver/releases",
+    "save_to_directory": "archive/Opera"
+  },
+  "edge": {
+    "latest-version": "",
+    "download_version_url": "https://packages.microsoft.com/repos/edge/pool/main/m/microsoft-edge-stable/microsoft-edge-stable_{EDGE_VERSION}-1_amd64",
+    "check_latest_version_url": "https://www.whatismybrowser.com/guides/the-latest-version/edge",
+    "download_webdriver_url": "https://msedgedriver.azureedge.net/{EDGE_VERSION}/edgedriver_linux64",
+    "download_webdriver_url_alternative": "https://msedgewebdriverstorage.z22.web.core.windows.net/?prefix={EDGE_VERSION}/edgedriver_linux64",
+    "save_to_directory": "archive/Edge"
+  },
+  "brave": {
+    "latest-version": "",
+    "download_version_url": "https://github.com/brave/brave-browser/releases/download/v{BRAVE_VERSION}/brave-browser_{BRAVE_VERSION}_amd64",
+    "check_latest_version_url": "https://github.com/brave/brave-browser/releases/latest",
+    "check_corresponding_chromium_version": "https://github.com/brave/brave-browser/releases/tag/v{BRAVE_VERSION}",
+    "old_download_webdriver_url": "https://chromedriver.storage.googleapis.com/{CHROMIUM_VERSION}/chromedriver_linux64.zip",
+    "download_webdriver_url": "https://storage.googleapis.com/chrome-for-testing-public/{CHROMIUM_VERSION}/linux64/chromedriver-linux64",
+    "check_webdriver_release_url": "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_{MAJOR_VERSION}",
+    "save_to_directory": "archive/Brave"
+  },
+  "tor": {
+    "latest-version": "",
+    "download_version_url": "https://archive.torproject.org/tor-package-archive/torbrowser/{TOR_VERSION}/tor-browser-linux-x86_64-{TOR_VERSION}",
+    "check_latest_version_url": "https://www.torproject.org/download/",
+    "download_webdriver_url": "https://archive.torproject.org/tor-package-archive/torbrowser/{TOR_VERSION}/geckodriver-linux-x86_64-{TOR_VERSION}",
+    "save_to_directory": "archive/Tor"
+  },
+  "webkit": {
+    "latest-version": "",
+    "safari-latest-version": "",
+    "download_version_url": "https://github.com/WebKit/WebKit/archive/refs/tags/WebKit-7{WEBKIT_VERSION}",
+    "check_latest_version_url": "https://raw.githubusercontent.com/mdn/browser-compat-data/refs/heads/main/browsers/safari.json",
+    "save_to_directory": "archive/WebKit"
+  }
+}
