@@ -7,3 +7,4 @@ mitmproxy==11.0.2
 PyWinCtl==0.4.1
 pyautogui==0.9.54
 PyVirtualDisplay==3.0
+json5==0.13.0
