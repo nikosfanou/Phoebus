@@ -25,7 +25,7 @@ def get_args():
 
     return parser.parse_args()
 
-# Outside docker run `python3 ws-handler.py --host localhost --CA myCA`
+# Outside docker run `python3 ws-handler.py --host localhost --CA phoebusCA`
 if __name__ == "__main__":
     args = get_args()
     print(args)

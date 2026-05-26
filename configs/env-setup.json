@@ -116,9 +116,9 @@
             "docker": "/usr/local/apache2/conf",
             "localhost": "/etc/apache2/certs"
         },
-        "CA": "myCA",
+        "CA": "phoebusCA",
         "CA-passphrase": "1234567890",
-        "CA-info": "/C=XX/O=Private/OU=Internal/CN=myCA.com",
+        "CA-info": "/C=XX/O=Private/OU=Internal/CN=phoebusCA.com",
         "servers-info": "/C=XX/O=Private/OU=Internal/CN={DOMAIN}"
     }
 }
