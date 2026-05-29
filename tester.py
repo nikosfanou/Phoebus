@@ -2005,30 +2005,26 @@ def run_deployments(use_case_info, mechanism_values, should_generate_hashes, php
     # Set the domains where we will run the tests
     testing_servers = use_case_info['run_on']
     
-    # Prepare to generate hashes and group values if required.
     if should_generate_hashes['script'] or should_generate_hashes['style']:
-        # TODO?: For runtime.php, better write another file and copy, than try to modify the existing one?
         # Generate hashes for scripts and styles
         generated_hashes = generate_file_hashes(use_case_info=use_case_info, testing_server=testing_servers[0], environment_info=environment_info, configured_mechanisms=configured_mechanisms, should_generate_hashes=should_generate_hashes)
         # Modify mechanism_values object to contain the real hashes instead of the placeholders. If we couldn't generate any hashes, skip this mechanism value.
         replace_hash_placeholders(mechanism_values=mechanism_values, script_hashes=generated_hashes['script'], style_hashes=generated_hashes['style'])
     
-    # group, e.g. 2, to set the mechanism values two-two.
-    # NOTE: We group here, as we may skip some deployments due to failure to generate (at least) 1 correct hash (hashes lists are empty).
+    # Group mechanism values together, e.g., group: 2 means group value1 and value2 to [value1, value2] and set both.
     enforce_group_field(mechanism_values=mechanism_values, use_case_info=use_case_info)
-    
-    # TODO? HERE store values in db? + custom/sticky, status codes, run_on
-    
-    # Count Total Deployments, and update PerformanceDegradationDetector
+        
+    # Count Total Deployments
     total_deployments = count_total_deployments(mechanism_values=mechanism_values, use_case_info=use_case_info)
     print(f'Total Deployments: {total_deployments}')
     Constants.LOGGER.info(f'Total Deployments: {total_deployments}')
 
+    # Prepare shared objects for different threads of the same browser.
     shared_context = prepare_parallel_browsers(use_case_info=use_case_info, mechanism_values=mechanism_values, generate_method=generate_method, environment_info=environment_info, total_deployments=total_deployments)
-    semaphore = threading.Lock() # NOTE this is for Selenium tests, in case we need to break parallelism to do so, e.g. userActivation.
-    workers = use_case_info['browsers']
-    # NOTE: Change from threading to ThreadPoolExecutor to propagate exceptions and close the framework gracefully if sth goes bad
+    semaphore = threading.Lock() # NOTE: this is an argument given to Python Selenium tests, in case the user needs to break (even temporarily) the parallelism between different browsers and threads.
+
     stop_event = threading.Event()
+    workers = use_case_info['browsers']
     with ThreadPoolExecutor(max_workers=len(workers)) as executor:
         futures = [
             executor.submit(browser_worker, browser_dict, shared_context, use_case_info,
@@ -2036,6 +2032,7 @@ def run_deployments(use_case_info, mechanism_values, should_generate_hashes, php
                 semaphore, stop_event)
             for browser_dict in workers
         ]
+
         try:
             for future in as_completed(futures):
                 future.result()
@@ -2050,15 +2047,6 @@ def run_deployments(use_case_info, mechanism_values, should_generate_hashes, php
         finally:
             executor.shutdown(wait=False, cancel_futures=True)
 
-    # print(deployment_mechanisms, status_code)
-    # Example deployment_mechanisms values
-    # [{'type': 'header', 'headers': ['Set-Cookie: foo=bar'], 'set_on': ['example']}, {'type': 'header', 'headers': ['X-Frame-Options: SAMEORIGIN', 'Location: /index.html'], 'set_on': ['sub.example', 'crossexample', 'localhost']}] 304
-    # [{'type': 'header', 'headers': ['Set-Cookie: foo=bar'], 'set_on': ['example']}, {'type': 'mechanism', 'mechanism': 'X-Frame-Options', 'mechanism_type': 'http-header', 'values': [('DENY', {'has_directive': ['DENY']}), ('SAMEORIGIN', {'has_directive': ['SAMEORIGIN']})], 'set_on': ['example', 'sub.example', 'crossexample', 'localhost']}, {'type': 'mechanism', 'mechanism': 'Subresource-Integrity', 'mechanism_type': 'html-attribute', 'values': [('sha256-UJoNpg65i5xyjK1ehvRqpqFqMlveV0VVQ2wTTh3Vawc=', {'has_directive': ['{CORRECT_SCRIPT_HASH}']})], 'set_on': ['example']}, {'type': 'mechanism', 'mechanism': 'Secure-Contexts', 'mechanism_type': 'other', 'values': [(None, {'mechanism_is_not_set': True})], 'set_on': ['example']}] 200
-    # TODO?: 1) Store status codes, mechanism values, custom/sticky headers etc. on database tables and keep indices-ids table,
-    # 2) generate_method creates indices, 3) we use indices to find ids to add in the deployment, and we use them to get the right mechanism (type,set_on) and the right value for this deployment!
-    # 4) On replay we retrieve all values/status codes/run_on and we replay based on ids and indices again. 4b) Similar for analyzer, and we process metadata to find common causes.
-    # e.g. store ((custom_header1_i, custom_header2_i), status_code_i, run_on_i, (mechanism1_i, mechanism2_i, mechanism3_i)) -> these index are used to get ids, mechanism types and set_on domains.
-    
     return True
 
 def insert_deployment(deployment_index, test_environment, experiment_id, database, logger):
@@ -2129,18 +2117,18 @@ def run_deployment(browser_dict, use_case_info, deployment_mechanisms, mechanism
     deployment_start = time.time()
     logger = browser_dict['logger']
     test_environment = {'mechanism_values': deployment_mechanisms, 'run_on': testing_server, 'status_code': status_code, 'test_file': php_test}
+    
     result, deployment_id = insert_deployment(deployment_index=deployment_index, test_environment=test_environment, experiment_id=experiment_id, database=database, logger=logger)
     if not result:
         raise Exception("Couldn't create entry in `deployments` table.")
     
-    # TODO? May make that 1 table :/
     insert_result, results_id = insert_browser_results(browser=browser_dict['name'], version=browser_dict['version'], thread=browser_dict['thread'],
         results={}, deployment_id=deployment_id, database=database, logger=logger)
     if not insert_result:
         raise Exception("The `insert_browser_results` method returned False indicating error on inserting data in the database")
     
     testing_domain = f"{testing_server}.com" if testing_server != 'localhost' else 'localhost'
-    # Write on runtime file e.g. Chrome-1.php
+    # Write on runtime file e.g., Chrome-1.php (for Chrome browser and thread=1)
     for server in environment_info['servers']:
         insert_mechanisms_in_php_file(server=server, php_file=browser_dict['runtime'], mechanisms_dict=mechanisms_to_set_per_domain[server] if server in mechanisms_to_set_per_domain else {}, status_code=status_code, testing_domain=testing_domain, results_id=results_id, logger=logger)
     
@@ -2274,7 +2262,7 @@ def run_browser_test(
     url_extension = expand_url(results_id=results_id, php_test=php_test, browser=browser, deployment_id=deployment_id)
 
     try:
-        driver.set_page_load_timeout(10) # 10 seconds timeout to load the page, by default
+        driver.set_page_load_timeout(10) # 10 seconds timeout to load the page, by default, but the user can change that in their Python Selenium test.
     except Exception as e:
         log_msg = extract_log_msg(exception=e)
         logger.exception(log_msg)
@@ -2284,7 +2272,6 @@ def run_browser_test(
     # Run user's python scripts
     for method in user_py_methods:
         try:
-            # if user script doesn't return a value != None, it won't be stored in the database
             result = method(driver, url_extension, mechanisms_set_per_domain, setup_info, logger, semaphore)
             if result is not None:
                 results[method.__name__] = result
@@ -2292,9 +2279,9 @@ def run_browser_test(
             log_msg = extract_log_msg(exception=e)
             logger.exception(log_msg)
 
-    # If user-defined python scripts were not given, tester should try to get the test page.
+    # If user-defined python scripts were not given, tester should just try to visit the test page.
     if not user_py_methods:
-        url = f"https://{setup_info['testing_domain']}" + url_extension
+        url = f"http://{setup_info['testing_domain']}" + url_extension
         try:
             driver.get(url)
         except Exception as e:
@@ -2304,7 +2291,6 @@ def run_browser_test(
     # Run user's js scripts
     for js_file, js_content in user_js_scripts.items():
         try:
-            # if user script doesn't return a value != None, it won't be stored in the database
             result = driver.execute_script(js_content)
             if result is not None:
                 results[js_file] = result
@@ -2315,7 +2301,7 @@ def run_browser_test(
     test_time = time.time() - test_start
     
     if results:
-        # If not results, then maybe the user retrieves the results with a different method e.g. using fetch and an endpoint script!
+        # If not results, then maybe the user retrieves the results with a different method e.g., using fetch and an endpoint script that captures requests!
         try:
             update_result = update_browser_results(id=results_id, results=results, database=database, logger=logger)
             if not update_result:
@@ -2329,10 +2315,6 @@ def run_browser_test(
 
 if __name__ == "__main__":
     args = get_args()
-    print(args)
-    # input('press to continue')
     if args.mode == 'regular':
         mechanisms_config = read_json(file=Constants.MECHANISMS_CONFIG)
         run_experiment(args=args, mechanisms_config=mechanisms_config)
-    # else:
-        # replay_experiment(args=args)
