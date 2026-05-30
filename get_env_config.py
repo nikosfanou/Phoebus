@@ -1,4 +1,5 @@
 from utils.SQLiteHandler import SQLiteHandler
+
 from argparse import ArgumentParser
 import json
 import uuid

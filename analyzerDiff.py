@@ -1,6 +1,7 @@
 import json
 import time
 from collections import defaultdict
+
 from utils.SQLiteHandler import SQLiteHandler
 
 def parse_json_safe(value):

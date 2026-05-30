@@ -2,6 +2,7 @@
 This Python script builds the Database that will hold the execution results.
 '''
 from utils.SQLiteHandler import SQLiteHandler
+
 from argparse import ArgumentParser
 
 class Constants:

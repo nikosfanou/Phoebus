@@ -2,10 +2,11 @@ import json5
 import json
 import itertools
 import math
-from utils.Mutator import Mutator
-from utils.SQLiteHandler import SQLiteHandler
 from argparse import ArgumentParser
 from copy import deepcopy
+
+from utils.Mutator import Mutator
+from utils.SQLiteHandler import SQLiteHandler
 
 class CONSTANTS:
     CONFIG_FILE = "configs/mechanisms.jsonc"
