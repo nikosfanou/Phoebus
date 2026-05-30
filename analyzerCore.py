@@ -653,10 +653,7 @@ def build_behavior_clusters(clusters):
         lambda: defaultdict(dict)
     )
 
-    # -----------------------------------------------------
     # collect all results per test
-    # -----------------------------------------------------
-
     test_results = defaultdict(dict)
 
     for result, tests in clusters.items():
@@ -668,10 +665,7 @@ def build_behavior_clusters(clusters):
                 deployments
             )
 
-    # -----------------------------------------------------
     # cluster by RESULT SET
-    # -----------------------------------------------------
-
     for test_id, result_map in test_results.items():
 
         behavior_signature = frozenset(
@@ -686,26 +680,17 @@ def build_behavior_clusters(clusters):
 
 def build_behavior_region_clusters_strict_equality(behavior_clusters):
 
-    # =====================================================
-    # FINAL:
-    #
-    # behavior_signature
-    #   -> deployment_signature
-    #       -> grouped tests
-    # =====================================================
-
+    """   
+    behavior_signature
+      -> deployment_signature
+          -> grouped tests
+    """
     final_clusters = {}
 
-    # =====================================================
     # total produced rules
-    # =====================================================
-
     total_region_clusters = 0
 
-    # =====================================================
     # iterate behavior clusters
-    # =====================================================
-
     for behavior_signature, tests_map in behavior_clusters.items():
 
         region_clusters = defaultdict(lambda: {
@@ -714,18 +699,12 @@ def build_behavior_region_clusters_strict_equality(behavior_clusters):
             "deployments": defaultdict(dict)
         })
 
-        # =================================================
         # analyze tests
-        # =================================================
-
         for test_id, result_map in tests_map.items():
 
             deployment_signature = []
 
-            # ---------------------------------------------
             # build STRICT deployment signature
-            # ---------------------------------------------
-
             for result, deployments in result_map.items():
 
                 deployment_ids = set()
@@ -751,10 +730,7 @@ def build_behavior_region_clusters_strict_equality(behavior_clusters):
                 sorted(deployment_signature)
             )
 
-            # ---------------------------------------------
             # cluster
-            # ---------------------------------------------
-
             cluster = region_clusters[
                 deployment_signature
             ]
@@ -816,10 +792,7 @@ def print_behavior_region_clusters(region_clusters):
 
             cluster_counter += 1
 
-            # =================================================
             # Tests
-            # =================================================
-
             print(
                 f"\nTests ({len(cluster['tests'])}):"
             )
@@ -828,10 +801,7 @@ def print_behavior_region_clusters(region_clusters):
 
                 print(f"  - {test}")
 
-            # =================================================
             # Results
-            # =================================================
-
             print("\nResults:")
 
             for result, deployment_ids in (
@@ -842,10 +812,7 @@ def print_behavior_region_clusters(region_clusters):
 
                 print("\n    Cases:")
 
-                # ---------------------------------------------
                 # representative test
-                # ---------------------------------------------
-
                 representative = cluster["tests"][0]
 
                 representative_result_map = (
@@ -864,10 +831,7 @@ def print_behavior_region_clusters(region_clusters):
 
                 seen_cases = set()
 
-                # ---------------------------------------------
                 # iterate deployments
-                # ---------------------------------------------
-
                 for deployment in deployments:
 
                     mechanisms = deployment.get(
@@ -879,10 +843,7 @@ def print_behavior_region_clusters(region_clusters):
                         "custom_headers"
                     )
 
-                    # =========================================
                     # normalize custom headers
-                    # =========================================
-
                     if custom_headers is None:
 
                         custom_header_groups = [[]]
@@ -914,10 +875,7 @@ def print_behavior_region_clusters(region_clusters):
                             custom_headers
                         )
 
-                    # =========================================
                     # mechanism lines
-                    # =========================================
-
                     mechanism_lines = []
 
                     for mech_name, values in (
@@ -945,10 +903,7 @@ def print_behavior_region_clusters(region_clusters):
                                     f"{mech_name}: {value}"
                                 )
 
-                    # =========================================
                     # create ONE case per deployment
-                    # =========================================
-
                     for header_group in (
                         custom_header_groups
                     ):
@@ -984,10 +939,7 @@ def print_behavior_region_clusters(region_clusters):
                                 f"        - {line}"
                             )
 
-                # =============================================
                 # deployment ids
-                # =============================================
-
                 print(
                     f"\n    Deployment IDs "
                     f"({len(deployment_ids)}):"
@@ -995,10 +947,7 @@ def print_behavior_region_clusters(region_clusters):
 
                 print(f"      {deployment_ids}")
 
-            # =================================================
             # Detailed deployments
-            # =================================================
-
             print("\nDetailed Deployments:")
 
             for test_id, result_map in (
