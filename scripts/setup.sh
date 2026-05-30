@@ -6,8 +6,6 @@ sudo apt install apache2
 sudo apt install php libapache2-mod-php
 
 # Install Dependencies
-# for pyautogui
-sudo apt-get install python3-tk python3-dev scrot
 
 # Install cloc for counting lines of code on TestGenerator
 sudo apt install cloc
@@ -38,7 +36,7 @@ EOF
 # to be able to run docker commands without sudo
 sudo usermod -a -G docker $(whoami)
 
-# Create certifications folder
+# Create certificates folder
 mkdir -p ./certs
 
 # Generate Certification Authority (CA)
@@ -49,6 +47,7 @@ timeout 1s mitmdump --set console_eventlog_verbosity=error --quiet
 
 # Add CA on browsers' trusted CA
 # NOTE: You may need to install the browsers first.
+sudo apt-get install libnss3-tools
 ./scripts/trust_ca.sh
 
 # Create custom apache image that has php installed and configured

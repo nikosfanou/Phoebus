@@ -16,7 +16,6 @@ mitmproxy_certfile="~/.mitmproxy/mitmproxy-ca-cert.pem"
 mitmproxy_certname="mitmproxy"
 servers_certfile="./certs/phoebusCA.pem"
 servers_certname="PHOEBUS_CA"
-sudo apt-get install libnss3-tools
 
 # Trust Servers CA
 certutil -A -n "${servers_certname}" -t "TCu,Cu,Tu" -i ${servers_certfile} -d sql:${certdir}

@@ -1,9 +1,6 @@
 #!/bin/bash
 
-# ---------------------------------------------------------
 # Install helpers
-# ---------------------------------------------------------
-
 install_deb() {
     local file=$1
     echo "Installing DEB package: $file"
@@ -39,10 +36,7 @@ extract_tar_bz2() {
     tar -xjf "$file" -C "$path" --overwrite
 }
 
-# ---------------------------------------------------------
 # Version helpers (Chromium browsers)
-# ---------------------------------------------------------
-
 get_installed_version() {
 
     local binary=$1
