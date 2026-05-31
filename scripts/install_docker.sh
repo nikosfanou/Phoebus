@@ -1,9 +1,25 @@
+#!/bin/bash
+
+set -e
+
+if command -v docker >/dev/null 2>&1; then
+  echo "Docker is already installed:"
+  docker --version
+  exit 0
+fi
+
+echo "Docker not found. Installing Docker..."
+
 # Set up the repository
 sudo apt-get update
-sudo apt-get install ca-certificates curl gnupg
+sudo apt-get install -y ca-certificates curl gnupg
+
 sudo install -m 0755 -d /etc/apt/keyrings
+
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+
 sudo chmod a+r /etc/apt/keyrings/docker.gpg
+
 echo \
   "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
   "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
@@ -12,7 +28,6 @@ echo \
 # Install Docker Engine
 sudo apt-get update
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-# sudo docker run hello-world
 
-# OR install from a package -> https://docs.docker.com/engine/install/ubuntu/
-# or -> https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04
+echo "Docker installation completed."
+docker --version

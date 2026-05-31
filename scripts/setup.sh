@@ -1,9 +1,14 @@
-# Install Apache2
-sudo apt update
-sudo apt install apache2
+# Install Prerequisities
 
-# Install PHP for apache
-sudo apt install php libapache2-mod-php
+# Install Python
+./scripts/install_python.sh
+
+# Install Docker
+./scripts/install_docker.sh
+
+# Install Apache
+./scripts/install_apache.sh
+
 
 # Install Dependencies
 
