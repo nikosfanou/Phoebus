@@ -27,3 +27,7 @@ Start Phoebus using:
 ```
 
 Replace `<CONFIG_PATH>` with the path to your configuration file.
+
+## Example test case
+
+A step-by-step guide for creating and running custom test cases with Phoebus will be provided soon...
