@@ -27,23 +27,3 @@ Start Phoebus using:
 ```
 
 Replace `<CONFIG_PATH>` with the path to your configuration file.
-
----
-
-## Installing WebKitGTK
-
-**TODO:** Add WebKitGTK installation instructions.
-
-## Downloading and Installing browsers
-
-**TODO:** Add install_browsers.sh and downloader.py commands
-
-## Running example **TODO**
-
-* init.sh {Use case name}
-* create config
-* create templates
-* expand to tests
-* optionally create selenium script
-* run
-* report analysis
