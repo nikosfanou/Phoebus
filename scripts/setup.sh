@@ -1,3 +1,7 @@
+#!/bin/bash
+
+set -e
+
 # Install Prerequisities
 
 # Install Python
@@ -13,10 +17,10 @@
 # Install Dependencies
 
 # Install cloc for counting lines of code on TestGenerator
-sudo apt install cloc
+sudo apt install -y cloc
 
 # Install needed python packages
-pip3 install -r requirements.txt
+python3 -m pip install -r requirements.txt
 
 # to be able to modify localhost apache files without sudo:
 sudo usermod -a -G www-data $(whoami)
@@ -40,6 +44,7 @@ EOF
 
 # to be able to run docker commands without sudo
 sudo usermod -a -G docker $(whoami)
+echo "You may need to log out and back in before Docker can be used without sudo."
 
 # Create certificates folder
 mkdir -p ./certs
@@ -51,8 +56,11 @@ python3 env-setup.py --create_ca
 timeout 1s mitmdump --set console_eventlog_verbosity=error --quiet
 
 # Add CA on browsers' trusted CA
-# NOTE: You may need to install the browsers first.
-sudo apt-get install libnss3-tools
+if ! dpkg -s libnss3-tools >/dev/null 2>&1; then
+    sudo apt-get install -y libnss3-tools
+fi
+
+echo "WARNING: Install and launch supported browsers before running trust_ca.sh."
 ./scripts/trust_ca.sh
 
 # Create custom apache image that has php installed and configured

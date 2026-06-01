@@ -12,7 +12,20 @@ echo "Docker not found. Installing Docker..."
 
 # Set up the repository
 sudo apt-get update
-sudo apt-get install -y ca-certificates curl gnupg
+
+MISSING_PACKAGES=()
+
+# Installing ca-certificates, curl, gnupg if not already installed
+for pkg in ca-certificates curl gnupg; do
+    if ! dpkg -s "$pkg" >/dev/null 2>&1; then
+        MISSING_PACKAGES+=("$pkg")
+    fi
+done
+
+if [ ${#MISSING_PACKAGES[@]} -ne 0 ]; then
+    echo "Installing: ${MISSING_PACKAGES[*]}"
+    sudo apt-get install -y "${MISSING_PACKAGES[@]}"
+fi
 
 sudo install -m 0755 -d /etc/apt/keyrings
 
