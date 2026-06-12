@@ -1,6 +1,6 @@
 import analyzerDiff
 import analyzerCore
-# import analyzerUI
+import analyzerUI
 
 from argparse import ArgumentParser
 import os
@@ -89,20 +89,13 @@ if __name__ == "__main__":
     detailed_report_path = os.path.join("reports", f"{base_filename}.json")
     
     report_output, simplified_input = analyzerDiff.analyze(args.database, args.experiments, mode=mode)
+
     simplified_report, simplified_stats = analyzerCore.build_simplified_report(simplified_input)
     report_output["metrics"]["simplification_metrics"] = simplified_stats
     
     save_json_report(report=report_output, path=detailed_report_path)
-    print(f"[+] Detailed report saved: {detailed_report_path}")
-
-    for browser, report in simplified_report.items():
-        simplified_report_path = os.path.join("reports", f"{base_filename}-{browser}.html")
-
-        # TODO: Add the HTML reports code
-        # analyzerUI.generate_html_report(
-        #     browser,
-        #     report,
-        #     simplified_report_path
-        # )
-        print(f"[+] Simplified report saved: {simplified_report_path}")
+    print(f"[+] JSON report written to: {detailed_report_path}")
+    
+    simplified_report_path = os.path.join("reports", f"{base_filename}.html")
+    analyzerUI.generate_behavior_report_html(all_browser_sections=simplified_report, output_path=simplified_report_path)
     
