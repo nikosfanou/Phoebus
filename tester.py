@@ -55,7 +55,7 @@ class Constants:
     MAX_BOOT_ATTEMPTS = 3
     ENDPOINTS_PATH = "./endpoint-scripts"
     ENV_SETUP_CONFIG = "./configs/env-setup.json"
-    MODE_SUPPORTED_VALUES = ["regular", "replay"]
+    MODE_SUPPORTED_VALUES = ["regular"]
     MECHANISMS_CONFIG = "./configs/mechanisms.jsonc"
     BROWSERS_INFO_CONFIG = "./configs/browsers-info.json"
     DEFAULT_FILES_PATH = "./default-files/tests"
@@ -85,26 +85,21 @@ class Constants:
 def get_args():
     parser = ArgumentParser()
     # both modes
-    parser.add_argument("-mo", "--mode", dest="mode", default = 'regular', type=str, help = "Supported values: 1. regular (default value) & 2. replay. Tester, in regular mode, runs new experiments based on a configuration file. In replay mode however, it re-runs a previously ran experiment to verify the correctness of its results.")
+    parser.add_argument("-mo", "--mode", dest="mode", default = 'regular', type=str, help = "Supported values: 1. regular (default value). Tester, in regular mode, runs new experiments based on a configuration file.")
     parser.add_argument("-db", "--database", default = Constants.CENTRAL_DB, dest = "database", type=str, help = f"The database file where we store the execution results. Default value is {Constants.CENTRAL_DB}")
     # regular mode
     parser.add_argument("-e", "--example", dest = "example", type=str, help = "The value that will replace the {EXAMPLE} placeholder.")
     parser.add_argument("-ce", "--crossexample", dest = "crossexample", type=str, help = "The value that will replace the {CROSSEXAMPLE} placeholder.")
     parser.add_argument("-mc", "--mainConfig", dest = "mainConfig", type=str,  help = "The main configuration file. Contains the Mechanisms to test and their options.")
     parser.add_argument("-c", "--config", default = Constants.ENV_SETUP_CONFIG, dest = "config", type=str, help = f"The environment setup configuration file. Default value is {Constants.ENV_SETUP_CONFIG}")
-    # replay mode
-    parser.add_argument("-de", "--deployments", dest = "deployments", nargs='+', type=int, help = f"The exact deployment IDs to re-run. Only for replay mode.")
-    parser.add_argument("-exp", "--experiment", dest="experiment", type=int, help = "The experiment to re-run. Only for replay mode.")
+
     args = parser.parse_args()
+
     # validation
     if args.mode not in Constants.MODE_SUPPORTED_VALUES:
         parser.error(f"Mode supported values are: {Constants.MODE_SUPPORTED_VALUES}")
     if args.mode == 'regular' and (args.mainConfig is None or args.example is None or args.crossexample is None):
         parser.error("In regular mode,\n\t-m/--mainConfig\n\t-e/--example\n\t-ce/--crossexample\narguments are required!")
-    if args.mode == 'replay' and args.experiment is None:
-        parser.error("In replay mode, -exp/--experiment argument is required!")
-    if args.mode == 'replay' and args.experiment is not None and args.experiment <= 0:
-        parser.error("The argument -exp/--experiment must be a positive integer!")
     return args
 
 def create_environment_info(configuration, example, crossexample):
@@ -1441,7 +1436,7 @@ def insert_mechanisms_in_php_file(server, php_file, mechanisms_dict, status_code
     root_path = os.path.join(Constants.APACHE_PREPENDS_HOST_PATH, server) if server != 'localhost' else Constants.LOCALHOST_PREPENDS_HOST_PATH
     overwrite_php_file(path=os.path.join(root_path, php_file), php_code=php_code, logger=logger)
 
-# helper, because we need different format to store deployments in the database (for replay and analysis) and different to store in PHP prepend file!
+# helper, because we need different format to store deployments in the database (e.g., for analysis) and different to store in PHP prepend file!
 def deployment_to_domain_format(deployment_mechanisms):
     result = {}
 
@@ -2312,251 +2307,8 @@ def run_browser_test(
     
     return test_time
 
-
-# def get_info_for_replay_mode(experiment_id, database):
-#     try:
-#         with SQLiteHandler(db_name=database) as db:
-#             result = db.get_info_for_replay_mode(id=experiment_id)
-#             if result is None:
-#                 return None, None, None, None
-            
-#             experiment_config, env_config, example, crossexample = result
-#             return (
-#                 json.loads(experiment_config),
-#                 json.loads(env_config),
-#                 example,
-#                 crossexample
-#             )
-#     except Exception as e:
-#         log_msg = extract_log_msg(exception=e)
-#         Constants.LOGGER.exception(log_msg)
-#         return None, None, None, None
-
-# # NOTE: caution on run_on and set_on which are initially placeholders but are saved with their replaced domain.
-# def replay_experiment(args):
-#     # Disable Performance Degradation Detector
-#     Constants.ENABLE_PERFORMANCE_DEGRADATION_OBSERVER = False
-#     # process arguments
-#     database = args.database
-#     experiment_id = args.experiment
-#     deployments_ids = args.deployments
-#     if deployments_ids is not None:
-#         deployments_ids = list(set(deployments_ids)) # remove duplicates
-
-#     use_case_info, configuration, example, crossexample = get_info_for_replay_mode(experiment_id=experiment_id, database=database)
-#     if use_case_info is None:
-#         print("[ERROR] Couldn't get experiment's configuration from database")
-#         print("Exiting...")
-#         exit(1)
-    
-#     use_case_info['threads'] = 1 # NOTE: We don't run many threads in replay mode !
-
-#     # collect info about servers, containers, endpoints, ips etc.
-#     environment_info = create_environment_info(configuration=configuration, example=example, crossexample=crossexample)
-
-#     php_environment_info = {
-#         'example': environment_info['containers_dict']['{EXAMPLE}'] + '.com',
-#         'crossexample': environment_info['containers_dict']['{CROSSEXAMPLE}'] + '.com',
-#         'sub_example': environment_info['containers_dict']['{SUB_EXAMPLE}'] + '.com',
-#         'sub2_example': environment_info['containers_dict']['{SUB2_EXAMPLE}'] + '.com',
-#         'sub_crossexample': environment_info['containers_dict']['{SUB_CROSSEXAMPLE}'] + '.com',
-#         'example_ip': environment_info['ip_dict']['{EXAMPLE_IP}'],
-#         'crossexample_ip': environment_info['ip_dict']['{CROSSEXAMPLE_IP}'],
-#         'sub_example_ip': environment_info['ip_dict']['{SUB_EXAMPLE_IP}'],
-#         'sub2_example_ip': environment_info['ip_dict']['{SUB2_EXAMPLE_IP}'],
-#         'sub_crossexample_ip': environment_info['ip_dict']['{SUB_CROSSEXAMPLE_IP}'],
-#         'custom_port': environment_info['ports_dict']['{PORT}'],
-#         'custom_ssl_port': environment_info['ports_dict']['{SSL_PORT}']
-#     }
-    
-#     # Write env.php -- We add the environmental php variables like $example in all php files and all domains, even if we won't set the mechanism values there!
-#     for server in environment_info['servers']:
-#         insert_variables_in_php_file(server=server, php_file=Constants.ENV_PHP_FILE, placeholders_dict=php_environment_info)
-
-#     # where the browser tests are located
-#     use_case_info["tests_path"] = os.path.join(use_case_info["use_case"], "tests")
-    
-#     # where the Selenium automation tests are located
-#     use_case_info["automation_tests_path"] = os.path.join(use_case_info["use_case"], "user-scripts")
-#     use_case_info['automation_tests'] = {}
-
-#     # convert dict to list of dicts format, for compatibility, and because in the future we may support multiple same browsers of different versions or other Nightly/Canary versions etc.
-#     use_case_info['browsers'] = convert_browsers_dict_to_list_of_dicts(use_case_info)
-    
-#     # Set tester.log for the module, and {browser}.log for each browser
-#     formatted_datetime = get_datetime_iso_format()
-#     Constants.LOGGER = set_loggers(mode='replay', experiment_id=experiment_id, date=formatted_datetime, browsers_info=use_case_info['browsers'])
-    
-#     # this field (tests) is a dictionary containing information about which php files should be executed (once or for every deployment), which should define (or not) mechanism values, and which are just helpful resources e.g. .js files.
-#     use_case_info['tests'] = get_tests(tests_path=use_case_info['tests_path'])
-#     if not use_case_info['tests'] or not use_case_info['tests']['execute']:
-#         Constants.LOGGER.error(f"No tests detected in `{use_case_info['tests_path']}`!")
-#         return
-#     # print(f"Test files: {use_case_info['tests']}")
-
-#     # Copy our default helper files into servers (only once in the beginning), this contains images, scripts, media and many other resources to help the user run the tests without searching for them.
-#     copy_all_files(tests_path=Constants.DEFAULT_FILES_PATH, servers=environment_info['servers'])
-#     # Copy test files into servers (only once in the beginning)
-#     copy_all_files(tests_path=use_case_info['tests_path'], servers=environment_info['servers'])
-
-#     # get Selenium tests (1. Python, 2. JavaScript to run in driver.execute_script())
-#     use_case_info['automation_tests']['py'], use_case_info['automation_tests']['js'] = get_automation_tests(path=use_case_info['automation_tests_path'])
-#     if len(use_case_info['automation_tests']['py']) == 0 and len(use_case_info['automation_tests']['js']) == 0:
-#         Constants.LOGGER.warn(f"No automation tests detected in `{use_case_info['automation_tests_path']}`! Tester will just visit the test page in case the results are not retrieved through Selenium.")
-#     # print(f"Python Automation Test files: {use_case_info['automation_tests']['py']}")
-#     # print(f"JavaScript Automation Test files (for driver.execute_script()): {use_case_info['automation_tests']['js']}")
-    
-#     # From Python test filenames find the Python test methods to run
-#     extract_user_methods(use_case_info=use_case_info)
-#     # From JavaScript test filenames, read their content, and execute it with driver.execute_script();
-#     extract_user_js_script(use_case_info=use_case_info)
-    
-#     # Install Browsers
-#     if Constants.AUTOMATED_BROWSER_INSTALLATION:
-#         installation_status = install_browsers(browsers=use_case_info['browsers'])
-#         if not installation_status:
-#             Constants.LOGGER.critical("Browsers installation failed!")
-#             exit(1)
-
-#     # NOTE: Before booting browsers we have to start mitmproxies
-#     # Start MiTM proxies
-#     enable_capture_requests = use_case_info['options']['capture_requests']
-#     if enable_capture_requests:
-#         allow_hosts = environment_info['domains'] + environment_info['ips']
-#         start_mitm_proxies(use_case_info=use_case_info, allow_hosts=allow_hosts)
-#     # Boot browsers
-#     get_drivers_with_threads(use_case_info=use_case_info)
-    
-#     try:
-#         # Replay tests
-#         replay_deployments(use_case_info=use_case_info, php_environment_info=php_environment_info, environment_info=environment_info, deployments_ids=deployments_ids, experiment_id=experiment_id, database=database)
-#     except Exception as e:
-#         log_msg = extract_log_msg(exception=e)
-#         Constants.LOGGER.exception(log_msg)
-    
-#     # Close browsers
-#     close_drivers(use_case_info=use_case_info)
-#     # Close MiTM proxies
-#     if enable_capture_requests:
-#         stop_mitm_proxies(use_case_info=use_case_info)
-#     # Remove all test files from all servers
-#     remove_files_from_servers(servers=environment_info['servers'])
-
-# def get_deployments_by_experiment_id(experiment_id, database):
-#     try:
-#         with SQLiteHandler(db_name=database) as db:
-#             return db.get_deployments_by_experiment_id(
-#                 experiment_id=experiment_id
-#             )
-#     except Exception as e:
-#         log_msg = extract_log_msg(exception=e)
-#         Constants.LOGGER.exception(log_msg)
-#         return []
-
-# def get_deployments_by_id_and_experiment_id(id, experiment_id, database):
-#     try:
-#         with SQLiteHandler(db_name=database) as db:
-#             return db.get_deployments_by_id_and_experiment_id(
-#                 id=id,
-#                 experiment_id=experiment_id
-#             )
-#     except Exception as e:
-#         log_msg = extract_log_msg(exception=e)
-#         Constants.LOGGER.exception(log_msg)
-#         return None
-
-# def replay_deployments(use_case_info, php_environment_info, environment_info, experiment_id, database, deployments_ids):
-#     # Configure the apache web servers
-#     prepare_servers(environment_info=environment_info, disable_browser_cache=use_case_info['options']['disable_browser_cache'])
-    
-#     if deployments_ids is None: # if user didn't give specific deployments
-#         deployments = get_deployments_by_experiment_id(experiment_id=experiment_id, database=database)
-#     else:
-#         for id in deployments_ids:
-#             deployment_data = get_deployments_by_id_and_experiment_id(id=id, experiment_id=experiment_id, database=database)
-#             if deployment_data is None:
-#                 Constants.LOGGER.error(f'Could not find any deployment with the id `{id}` and experiment id `{experiment_id}` in the database `{database}`! Continuing with the rest...')
-#                 continue
-#             deployments.append(deployment_data)
-
-#     last_testing_domain = None
-#     for deployment in deployments:
-#         # Collect stored data
-#         deployment_id = deployment[0]
-#         deployment_mechanisms = json.loads(deployment[1])
-#         test_environment = json.loads(deployment[2])
-#         status_code = test_environment['status_code']
-#         testing_server = test_environment['run_on']
-#         testing_domain = f"{testing_server}.com" if testing_server != 'localhost' else 'localhost'
-        
-#         use_case_php_info = {'testing_domain': testing_domain}
-#         if last_testing_domain != testing_domain:
-#             last_testing_domain = testing_domain
-#             # Add variables with testing domain and testing domain's IP address.
-#             # TODO: FIX, Constants.USE_CASE_PHP_FILE removed!
-#             # for server in environment_info['servers']:
-#             #     insert_variables_in_php_file(server=server, php_file=Constants.USE_CASE_PHP_FILE, placeholders_dict=use_case_php_info)
-       
-#         replay_deployment(deployment_id=deployment_id, use_case_info=use_case_info, deployment_mechanisms=deployment_mechanisms, status_code=status_code,
-#             php_environment_info={**php_environment_info, **use_case_php_info},
-#             environment_info=environment_info, experiment_id=experiment_id, database=database)
-    
-#     return True
-
-# def get_browser_results_by_deployment_id(deployment_id, database):
-#     try:
-#         with SQLiteHandler(db_name=database) as db:
-#             return db.get_browser_results_by_deployment_id(
-#                 deployment_id=deployment_id
-#             )
-#     except Exception as e:
-#         log_msg = extract_log_msg(exception=e)
-#         Constants.LOGGER.exception(log_msg)
-#         return []
-
-# def replay_deployment(deployment_id, use_case_info, deployment_mechanisms, status_code, php_environment_info, environment_info, experiment_id, database):
-#     tests_to_be_executed = []
-#     results_per_test_file = {}
-#     browser_results_ids = {}
-
-#     # Get stored results and data
-#     browser_results = get_browser_results_by_deployment_id(deployment_id=deployment_id, database=database)
-    
-#     # Iterate stored data in browser_results table to replay them
-#     for browser_result in browser_results:
-#         id = browser_result[0]
-#         browser_name = browser_result[1]
-#         results = json.loads(browser_result[3])
-#         test_file = browser_result[4]
-
-#         if test_file not in results_per_test_file:
-#             results_per_test_file[test_file] = {}
-#             browser_results_ids[test_file] = {}
-#         results_per_test_file[test_file][browser_name] = results
-#         browser_results_ids[test_file][browser_name] = id
-
-#         if test_file not in tests_to_be_executed:
-#             tests_to_be_executed.append(test_file)
-
-#     # Write on runtime.php
-#     mechanisms_to_set_per_domain = deployment_to_domain_format(deployment_mechanisms)
-#     for server in environment_info['servers']:
-#         insert_mechanisms_in_php_file(server=server, php_file=Constants.RUNTIME_PHP_FILE, mechanisms_dict=mechanisms_to_set_per_domain[server] if server in mechanisms_to_set_per_domain else {}, status_code=status_code)
-
-#     for php_test in tests_to_be_executed:
-#         run_status = run_test(
-#             use_case_info=use_case_info, mechanisms_set_per_domain=mechanisms_to_set_per_domain,
-#             setup_info=php_environment_info, php_test=php_test, deployment_id=deployment_id,
-#             environment_info=environment_info, run_mode='replay', results_per_test_file=results_per_test_file,
-#             database=database, browser_results_ids=browser_results_ids
-#         )
-#         if run_status is False:
-#             raise Exception(f"Execution of Deployment: {deployment_id} failed!")
-
 if __name__ == "__main__":
     args = get_args()
     if args.mode == 'regular':
         mechanisms_config = read_json(file=Constants.MECHANISMS_CONFIG)
         run_experiment(args=args, mechanisms_config=mechanisms_config)
-    # else:
-    #     replay_experiment(args=args) # TODO: From get_info_for_replay_mode until here !!
