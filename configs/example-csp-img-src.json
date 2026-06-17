@@ -11,14 +11,16 @@
                 "img-src": ["'none'", "{SOURCE_EXPRESSION_LIST}"]
             },
             "placeholders": {
-                "{SOURCE_EXPRESSION_LIST}": ["https://{EXAMPLE}", "https://{CROSSEXAMPLE}", "*", "'self'", "https://*.{EXAMPLE}"]
+                "{SOURCE_EXPRESSION_LIST}": ["http://{EXAMPLE}", "http://{CROSSEXAMPLE}", "*", "'self'", "http://*.{EXAMPLE}"]
             }
         }
     ],
     "status_codes": [200, 300, 400],
     "html": {
         "placeholders": {
-            "{IMG_URL}": ["https://{EXAMPLE_TEST_HOSTS}/resources/_index.php?uid={AUTO.ID}", "data:text/html,{SRCDOC}", "javascript:`{SRCDOC}`"]
+            "{DOMAINS}": ["{EXAMPLE}", "{SUB_EXAMPLE}", "{CROSSEXAMPLE}"],
+            "{IMG_TYPE}": ["png", "jpg"],
+            "{IMG_URL}": ["http://{DOMAINS}/resources/default.{IMG_TYPE}"]
         }
     },
     "browsers": {
