@@ -1,0 +1,29 @@
+{
+    "use_case": "content-security-policy/img-src",
+    "run_on": ["{EXAMPLE}"],
+    "mechanisms": [
+        {
+            "mechanism": "Content-Security-Policy",
+            "set_on" : ["{EXAMPLE}"],
+            "test_directives" : ["img-src"],
+            "custom_values": ["img-src", "iMG-sRc 'self'"],
+            "directives": {
+                "img-src": ["'none'", "{SOURCE_EXPRESSION_LIST}"]
+            },
+            "placeholders": {
+                "{SOURCE_EXPRESSION_LIST}": ["https://{EXAMPLE}", "https://{CROSSEXAMPLE}", "*", "'self'", "https://*.{EXAMPLE}"]
+            }
+        }
+    ],
+    "status_codes": [200, 300, 400],
+    "html": {
+        "placeholders": {
+            "{IMG_URL}": ["https://{EXAMPLE_TEST_HOSTS}/resources/_index.php?uid={AUTO.ID}", "data:text/html,{SRCDOC}", "javascript:`{SRCDOC}`"]
+        }
+    },
+    "browsers": {
+        "Chrome": "latest",
+        "Edge": "latest",
+        "Firefox": "latest"
+    }
+}

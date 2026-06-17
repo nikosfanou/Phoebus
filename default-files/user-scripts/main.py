@@ -18,6 +18,6 @@ def test_method(driver, url_extension, mechanisms_per_domain, setup_info, logger
 '''
 The methods below will be executed by the Tester module.
 Whatever they return, will be stored in results field in browser_results table of the central database.
-CAUTION: DON'T change the name `DICTIONARY`!
+CAUTION: DON'T change the name `METHODS_TO_EXECUTE`!
 '''
 METHODS_TO_EXECUTE = [test_method]
