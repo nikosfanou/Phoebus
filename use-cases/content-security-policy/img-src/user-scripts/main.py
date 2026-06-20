@@ -10,6 +10,22 @@ logger                := Logger used to record important information during brow
 semaphore             := A semaphore used to coordinate browser actions when ordering is required. It supports the acquire() and release() methods to lock and unlock execution.
 '''
 def test_method(driver, url_extension, mechanisms_per_domain, setup_info, logger, semaphore):
+    try:
+        driver.set_page_load_timeout(25) # should load under 25 sec, else timeout
+    except Exception as e:
+        logger.error(f"Attempt to change the page load timeout failed!")
+        log_msg = extract_log_msg(exception=e)
+        logger.error(log_msg)
+
+    url = f"http://{setup_info['testing_domain']}" + url_extension
+    try:
+        driver.get(url) # visit the test page
+    except Exception as e:
+        logger.error(f'driver.get("{url}") failed')
+        log_msg = extract_log_msg(exception=e)
+        logger.exception(log_msg)
+        return {}
+
     # This JS code waits for all the images in the document to load or timeout, and then stores their status ('timeout' / 'loaded' / 'blocked')
     results = driver.execute_async_script("""
         const callback = arguments[arguments.length - 1];
